@@ -1,34 +1,36 @@
- ```html
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UniPath — University Discovery</title>
+<title>UniPath — University Discovery Platform</title>
 
 <style>
+:root{
+    --bg:#f5f7fb;
+    --panel:#ffffff;
+    --panel2:#f8fafc;
+    --text:#111827;
+    --muted:#667085;
+    --border:#e5e7eb;
+    --blue:#2563eb;
+    --blue2:#1d4ed8;
+    --green:#059669;
+    --orange:#d97706;
+    --red:#dc2626;
+    --purple:#7c3aed;
+    --shadow:0 10px 30px rgba(15,23,42,.06);
+    --radius:18px;
+}
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-:root{
-    --bg:#f5f7fb;
-    --card:#ffffff;
-    --text:#172033;
-    --muted:#718096;
-    --border:#e6eaf0;
-    --blue:#2563eb;
-    --blue2:#1d4ed8;
-    --green:#059669;
-    --red:#dc2626;
-    --purple:#7c3aed;
-    --shadow:0 8px 30px rgba(15,23,42,.06);
-}
-
 body{
-    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     background:var(--bg);
     color:var(--text);
 }
@@ -49,7 +51,7 @@ button{
 /* SIDEBAR */
 
 .sidebar{
-    width:245px;
+    width:250px;
     background:#fff;
     border-right:1px solid var(--border);
     padding:24px 16px;
@@ -57,432 +59,482 @@ button{
     left:0;
     top:0;
     bottom:0;
-    z-index:50;
+    z-index:100;
 }
 
 .logo{
     display:flex;
     align-items:center;
-    gap:11px;
-    padding:4px 10px 28px;
-    font-size:21px;
-    font-weight:800;
+    gap:10px;
+    padding:0 10px 28px;
 }
 
-.logoMark{
-    width:34px;
-    height:34px;
-    border-radius:10px;
-    background:#2563eb;
-    color:white;
+.logo-mark{
+    width:36px;
+    height:36px;
+    border-radius:11px;
+    background:#111827;
+    color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
     font-weight:800;
 }
 
-.nav{
-    display:flex;
-    flex-direction:column;
-    gap:4px;
+.logo-text{
+    font-size:20px;
+    font-weight:800;
+    letter-spacing:-.5px;
 }
 
-.nav button{
-    border:0;
-    background:transparent;
-    color:#687386;
-    padding:11px 13px;
-    border-radius:9px;
-    text-align:left;
+.logo-text span{
+    color:var(--blue);
+}
+
+.nav-title{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:#98a2b3;
+    padding:0 12px;
+    margin:10px 0 8px;
+}
+
+.nav-item{
+    width:100%;
     display:flex;
     align-items:center;
-    gap:11px;
-    font-size:14px;
+    gap:12px;
+    padding:11px 12px;
+    border:0;
+    background:transparent;
+    border-radius:10px;
+    color:#667085;
+    text-align:left;
+    margin-bottom:3px;
+    transition:.2s;
 }
 
-.nav button:hover{
+.nav-item:hover{
     background:#f3f6fa;
-    color:#172033;
+    color:#111827;
 }
 
-.nav button.active{
-    background:#edf4ff;
-    color:#2563eb;
+.nav-item.active{
+    background:#eef4ff;
+    color:#1d4ed8;
     font-weight:700;
 }
 
-.navIcon{
-    width:19px;
+.nav-icon{
+    width:20px;
     text-align:center;
 }
 
-.sidebarBottom{
+.sidebar-bottom{
     position:absolute;
     left:16px;
     right:16px;
     bottom:20px;
 }
 
-.profileMini{
-    border-top:1px solid var(--border);
-    padding:17px 9px 0;
+.profile-mini{
+    border:1px solid var(--border);
+    background:#f8fafc;
+    padding:12px;
+    border-radius:13px;
     display:flex;
     align-items:center;
     gap:10px;
 }
 
 .avatar{
-    width:36px;
-    height:36px;
+    width:34px;
+    height:34px;
     border-radius:50%;
-    background:#172033;
-    color:#fff;
+    background:#111827;
+    color:white;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-weight:700;
-}
-
-.profileMiniText{
-    overflow:hidden;
-}
-
-.profileMiniText strong{
-    display:block;
     font-size:13px;
-}
-
-.profileMiniText span{
-    color:var(--muted);
-    font-size:11px;
+    font-weight:700;
 }
 
 /* MAIN */
 
 .main{
-    margin-left:245px;
-    width:calc(100% - 245px);
+    margin-left:250px;
+    width:calc(100% - 250px);
+    min-height:100vh;
 }
 
 .topbar{
     height:72px;
-    background:#fff;
+    background:rgba(255,255,255,.92);
     border-bottom:1px solid var(--border);
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 34px;
+    padding:0 32px;
     position:sticky;
     top:0;
-    z-index:30;
+    z-index:50;
+    backdrop-filter:blur(12px);
 }
 
-.searchTop{
-    width:380px;
-    position:relative;
-}
-
-.searchTop input{
-    width:100%;
-    border:1px solid var(--border);
-    background:#f8fafc;
-    border-radius:9px;
-    padding:10px 14px 10px 38px;
-    outline:none;
-}
-
-.searchIcon{
-    position:absolute;
-    left:13px;
-    top:10px;
-    color:#94a3b8;
-}
-
-.topRight{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.topProfile{
+.search-box{
     display:flex;
     align-items:center;
     gap:9px;
-    font-size:13px;
-    font-weight:700;
+    width:360px;
+    height:40px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:0 12px;
+    background:#fff;
 }
 
-/* PAGE */
+.search-box input{
+    border:0;
+    outline:none;
+    width:100%;
+    color:var(--text);
+}
 
-.page{
-    padding:34px;
-    max-width:1450px;
+.top-right{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.status{
+    font-size:12px;
+    color:var(--green);
+    background:#ecfdf3;
+    padding:7px 10px;
+    border-radius:20px;
+}
+
+.content{
+    padding:30px 34px 60px;
+    max-width:1500px;
     margin:auto;
 }
 
-.pageTitle{
-    font-size:27px;
-    font-weight:800;
+/* GENERAL */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.page-header{
+    margin-bottom:24px;
+}
+
+.page-header h1{
+    font-size:30px;
+    letter-spacing:-1px;
     margin-bottom:7px;
 }
 
-.pageSubtitle{
+.page-header p{
     color:var(--muted);
-    font-size:14px;
-    margin-bottom:26px;
-}
-
-/* HERO */
-
-.hero{
-    background:#172033;
-    color:white;
-    border-radius:17px;
-    padding:30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:22px;
-}
-
-.heroText{
-    max-width:650px;
-}
-
-.hero h1{
-    font-size:31px;
-    margin-bottom:9px;
-}
-
-.hero p{
-    color:#b8c1d1;
-    line-height:1.6;
-    font-size:14px;
-}
-
-.heroActions{
-    display:flex;
-    gap:9px;
-    margin-top:21px;
 }
 
 .btn{
-    border:0;
-    border-radius:8px;
-    padding:10px 15px;
-    font-weight:700;
+    border:1px solid var(--border);
+    background:#fff;
+    color:#344054;
+    padding:10px 14px;
+    border-radius:10px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 5px 14px rgba(0,0,0,.06);
+}
+
+.btn.primary{
+    background:var(--blue);
+    color:white;
+    border-color:var(--blue);
+}
+
+.btn.primary:hover{
+    background:var(--blue2);
+}
+
+.btn.dark{
+    background:#111827;
+    color:white;
+    border-color:#111827;
+}
+
+.btn.small{
+    padding:8px 11px;
     font-size:13px;
 }
 
-.btnPrimary{
-    background:#2563eb;
-    color:#fff;
-}
-
-.btnPrimary:hover{
-    background:#1d4ed8;
-}
-
-.btnLight{
-    background:#fff;
-    color:#172033;
-}
-
-.btnOutline{
-    background:white;
-    color:#334155;
+.card{
+    background:var(--panel);
     border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
 }
 
-.btnDanger{
-    background:#fff1f2;
-    color:#dc2626;
+/* OVERVIEW */
+
+.hero{
+    background:#111827;
+    color:white;
+    border-radius:22px;
+    padding:32px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+    margin-bottom:22px;
+    overflow:hidden;
 }
 
-/* STATS */
+.hero h1{
+    font-size:35px;
+    line-height:1.1;
+    letter-spacing:-1.3px;
+    max-width:650px;
+}
+
+.hero p{
+    margin-top:13px;
+    color:#cbd5e1;
+    max-width:600px;
+    line-height:1.6;
+}
+
+.hero-actions{
+    margin-top:22px;
+    display:flex;
+    gap:10px;
+}
+
+.hero .btn{
+    background:white;
+    color:#111827;
+    border-color:white;
+}
+
+.hero-side{
+    min-width:240px;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.12);
+    padding:22px;
+    border-radius:18px;
+}
+
+.hero-side-label{
+    color:#94a3b8;
+    font-size:12px;
+    margin-bottom:8px;
+}
+
+.hero-score{
+    font-size:42px;
+    font-weight:800;
+}
+
+.hero-score span{
+    font-size:15px;
+    color:#94a3b8;
+}
 
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:16px;
+    gap:15px;
     margin-bottom:25px;
 }
 
 .stat{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:13px;
     padding:20px;
 }
 
-.statLabel{
-    font-size:12px;
+.stat-label{
+    font-size:13px;
     color:var(--muted);
-    margin-bottom:8px;
+    margin-bottom:9px;
 }
 
-.statValue{
-    font-size:25px;
+.stat-value{
+    font-size:26px;
     font-weight:800;
 }
 
-.statSmall{
-    color:#16a34a;
-    font-size:11px;
-    margin-top:6px;
-}
-
-/* SECTION */
-
-.sectionHeader{
+.section-head{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin:25px 0 15px;
+    margin:25px 0 14px;
 }
 
-.sectionHeader h2{
+.section-head h2{
     font-size:19px;
 }
 
-.sectionHeader button{
+.section-head button{
     border:0;
-    background:none;
+    background:transparent;
     color:var(--blue);
     font-weight:700;
-    font-size:13px;
 }
 
-/* UNIVERSITY GRID */
+/* UNIVERSITY CARDS */
 
-.uniGrid{
+.uni-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:18px;
 }
 
-.uniCard{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:14px;
+.uni-card{
     overflow:hidden;
-    transition:.18s;
+    transition:.22s;
 }
 
-.uniCard:hover{
-    transform:translateY(-2px);
-    box-shadow:var(--shadow);
+.uni-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 35px rgba(15,23,42,.09);
 }
 
-.uniCover{
-    height:165px;
+.uni-cover{
+    height:175px;
     position:relative;
     background:#e9eef5;
     overflow:hidden;
 }
 
-.uniImage{
+.uni-image{
     width:100%;
     height:100%;
     object-fit:cover;
     display:block;
 }
 
-.uniImage::after{
+.uni-cover::after{
     content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.38));
+    pointer-events:none;
 }
 
-.uniFallback{
+.uni-monogram{
+    width:100%;
     height:100%;
     display:flex;
-    align-items:center;
     justify-content:center;
-    background:linear-gradient(135deg,#dbeafe,#eef2ff);
-    font-size:40px;
-    font-weight:800;
-    color:#2563eb;
+    align-items:center;
+    font-size:50px;
+    font-weight:900;
+    color:#334155;
+    background:linear-gradient(135deg,#e2e8f0,#f8fafc);
 }
 
-.uniSave{
+.save-btn{
     position:absolute;
     right:12px;
     top:12px;
-    width:35px;
-    height:35px;
-    border:0;
-    border-radius:9px;
-    background:rgba(255,255,255,.94);
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.7);
+    background:rgba(255,255,255,.9);
+    z-index:4;
     font-size:17px;
-    z-index:2;
 }
 
-.uniSave.saved{
-    color:#2563eb;
+.save-btn.saved{
+    color:#dc2626;
 }
 
-.matchBadge{
-    position:absolute;
-    left:12px;
-    bottom:12px;
-    background:white;
-    border-radius:7px;
-    padding:6px 9px;
-    font-size:11px;
-    font-weight:800;
+.uni-body{
+    padding:18px;
 }
 
-.uniBody{
-    padding:17px;
-}
-
-.uniBody h3{
-    font-size:16px;
-    line-height:1.35;
-    margin-bottom:5px;
-}
-
-.uniLocation{
-    color:var(--muted);
-    font-size:12px;
-    margin-bottom:13px;
-}
-
-.tags{
+.uni-top{
     display:flex;
-    gap:6px;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.uni-name{
+    font-weight:800;
+    font-size:17px;
+    line-height:1.25;
+}
+
+.uni-location{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:5px;
+}
+
+.match{
+    min-width:58px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#ecfdf3;
+    color:#047857;
+    border-radius:8px;
+    font-weight:800;
+    font-size:12px;
+}
+
+.uni-tags{
+    display:flex;
+    gap:7px;
     flex-wrap:wrap;
-    margin-bottom:15px;
+    margin:14px 0;
 }
 
 .tag{
-    background:#f1f5f9;
-    color:#475569;
+    padding:5px 8px;
+    background:#f3f4f6;
+    color:#667085;
     border-radius:6px;
-    padding:5px 7px;
-    font-size:10px;
-    font-weight:700;
+    font-size:11px;
+    font-weight:600;
 }
 
-.uniFooter{
-    border-top:1px solid var(--border);
-    padding-top:13px;
+.uni-footer{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    border-top:1px solid var(--border);
+    padding-top:13px;
 }
 
-.uniFooter span{
-    color:#64748b;
-    font-size:11px;
+.uni-price{
+    color:#475467;
+    font-size:12px;
+}
+
+.uni-actions{
+    display:flex;
+    gap:7px;
 }
 
 /* FILTERS */
 
 .filters{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:13px;
-    padding:16px;
     display:grid;
     grid-template-columns:2fr 1fr 1fr 1fr;
     gap:10px;
@@ -490,258 +542,318 @@ button{
 }
 
 .input,.select{
-    width:100%;
+    height:43px;
     border:1px solid var(--border);
-    border-radius:8px;
-    padding:10px 12px;
-    outline:none;
+    border-radius:10px;
     background:white;
-    color:var(--text);
+    padding:0 12px;
+    outline:none;
+    width:100%;
 }
 
 .input:focus,.select:focus{
-    border-color:#93c5fd;
+    border-color:#93b4ff;
+    box-shadow:0 0 0 3px #eff5ff;
+}
+
+/* AI */
+
+.ai-layout{
+    display:grid;
+    grid-template-columns:1fr 330px;
+    gap:20px;
+}
+
+.ai-chat{
+    min-height:600px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.ai-header{
+    padding:20px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.ai-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.ai-logo{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:#111827;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:900;
+}
+
+.ai-messages{
+    padding:22px;
+    flex:1;
+    overflow:auto;
+    background:#fafbfc;
+}
+
+.message{
+    max-width:78%;
+    padding:13px 15px;
+    border-radius:14px;
+    margin-bottom:12px;
+    line-height:1.55;
+    font-size:14px;
+}
+
+.message.ai{
+    background:white;
+    border:1px solid var(--border);
+}
+
+.message.user{
+    background:#111827;
+    color:white;
+    margin-left:auto;
+}
+
+.ai-input{
+    border-top:1px solid var(--border);
+    padding:14px;
+    display:flex;
+    gap:9px;
+}
+
+.ai-input input{
+    flex:1;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:11px;
+    outline:none;
+}
+
+.ai-side{
+    padding:20px;
+}
+
+.ai-side h3{
+    margin-bottom:13px;
+}
+
+.ai-suggestion{
+    width:100%;
+    border:1px solid var(--border);
+    background:#fff;
+    border-radius:10px;
+    padding:11px;
+    text-align:left;
+    margin-bottom:8px;
+    font-size:13px;
+}
+
+.ai-suggestion:hover{
+    border-color:#9db9f8;
+    background:#f8fbff;
 }
 
 /* PROFILE */
 
-.profileGrid{
+.profile-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:18px;
+    gap:20px;
 }
 
-.card{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:22px;
+.form-card{
+    padding:24px;
 }
 
-.card h3{
-    font-size:16px;
-    margin-bottom:16px;
+.form-group{
+    margin-bottom:17px;
 }
 
-.formGroup{
-    margin-bottom:15px;
-}
-
-.formGroup label{
+.form-group label{
     display:block;
-    font-size:12px;
+    font-size:13px;
     font-weight:700;
-    margin-bottom:6px;
+    margin-bottom:7px;
 }
 
-.profileStrength{
-    display:flex;
-    flex-direction:column;
+.profile-strength{
+    display:grid;
     gap:15px;
 }
 
-.strengthRow{
-    display:flex;
-    align-items:center;
-    gap:10px;
+.progress-row{
+    display:grid;
+    gap:7px;
 }
 
-.strengthRow span{
-    width:85px;
-    font-size:12px;
-    color:#64748b;
+.progress-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
 }
 
 .progress{
-    flex:1;
     height:8px;
-    background:#eef2f7;
-    border-radius:10px;
+    background:#edf0f4;
+    border-radius:20px;
     overflow:hidden;
 }
 
-.progressBar{
+.progress-fill{
     height:100%;
     background:#2563eb;
-    border-radius:10px;
+    border-radius:20px;
 }
 
 /* ROADMAP */
 
 .roadmap{
-    display:flex;
-    flex-direction:column;
-    gap:13px;
+    display:grid;
+    gap:14px;
 }
 
-.roadStep{
+.roadmap-item{
+    padding:20px;
     display:flex;
-    gap:16px;
-    padding:17px;
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:13px;
+    gap:17px;
+    align-items:flex-start;
 }
 
-.stepNumber{
-    min-width:38px;
+.roadmap-number{
+    width:38px;
     height:38px;
+    flex:none;
     border-radius:50%;
-    background:#edf4ff;
-    color:#2563eb;
+    background:#111827;
+    color:#fff;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     font-weight:800;
 }
 
-.roadStep h3{
+.roadmap-item h3{
+    margin-bottom:5px;
+}
+
+.roadmap-item p{
+    color:var(--muted);
+    line-height:1.5;
+    font-size:14px;
+}
+
+/* TRACKER */
+
+.tracker-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:17px;
+}
+
+.tracker-column{
+    padding:17px;
+    min-height:450px;
+}
+
+.tracker-column h3{
+    margin-bottom:14px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.tracker-count{
+    background:#f2f4f7;
+    border-radius:20px;
+    padding:3px 8px;
+    font-size:11px;
+}
+
+.tracker-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px;
+    margin-bottom:10px;
+}
+
+.tracker-card h4{
     font-size:14px;
     margin-bottom:5px;
 }
 
-.roadStep p{
-    color:#64748b;
+.tracker-card p{
     font-size:12px;
-    line-height:1.5;
+    color:var(--muted);
+}
+
+.tracker-card button{
+    margin-top:10px;
 }
 
 /* COMPARE */
 
-.compareTable{
+.compare-table{
     overflow:auto;
-    background:white;
-    border:1px solid var(--border);
-    border-radius:14px;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:800px;
+    background:#fff;
 }
 
 th,td{
-    text-align:left;
-    padding:14px;
     border-bottom:1px solid var(--border);
-    font-size:12px;
+    padding:15px;
+    text-align:left;
+    white-space:nowrap;
 }
 
 th{
-    color:#64748b;
-    font-size:11px;
-    text-transform:uppercase;
-}
-
-/* AI */
-
-.aiLayout{
-    display:grid;
-    grid-template-columns:280px 1fr;
-    gap:18px;
-    height:calc(100vh - 150px);
-    min-height:620px;
-}
-
-.aiSide{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:18px;
-}
-
-.aiSide h3{
-    margin-bottom:14px;
-}
-
-.aiQuick{
-    width:100%;
-    text-align:left;
     background:#f8fafc;
-    border:1px solid var(--border);
-    border-radius:9px;
-    padding:11px;
-    margin-bottom:8px;
-    font-size:12px;
-    color:#475569;
-}
-
-.aiQuick:hover{
-    border-color:#bfdbfe;
-    background:#eff6ff;
-}
-
-.chat{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:14px;
-    display:flex;
-    flex-direction:column;
-    overflow:hidden;
-}
-
-.chatHeader{
-    padding:17px 20px;
-    border-bottom:1px solid var(--border);
-    display:flex;
-    align-items:center;
-    gap:11px;
-}
-
-.aiAvatar{
-    width:38px;
-    height:38px;
-    border-radius:11px;
-    background:#2563eb;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:800;
-}
-
-.chatMessages{
-    flex:1;
-    padding:22px;
-    overflow-y:auto;
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-
-.message{
-    max-width:75%;
-    padding:12px 14px;
-    border-radius:12px;
     font-size:13px;
-    line-height:1.55;
 }
 
-.message.ai{
-    background:#f3f6fa;
-    align-self:flex-start;
+td{
+    font-size:13px;
 }
 
-.message.user{
-    background:#2563eb;
-    color:white;
-    align-self:flex-end;
+/* REQUIREMENTS */
+
+.requirements-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
 }
 
-.chatInput{
-    padding:14px;
-    border-top:1px solid var(--border);
+.req-card{
+    padding:22px;
+}
+
+.req-card h3{
+    margin-bottom:15px;
+}
+
+.req-item{
     display:flex;
-    gap:9px;
+    justify-content:space-between;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
+    font-size:14px;
 }
 
-.chatInput input{
-    flex:1;
-    border:1px solid var(--border);
-    border-radius:9px;
-    padding:11px 13px;
-    outline:none;
+.req-item:last-child{
+    border-bottom:0;
 }
 
 /* MODAL */
@@ -749,151 +861,196 @@ th{
 .modal{
     position:fixed;
     inset:0;
-    background:rgba(15,23,42,.58);
+    background:rgba(15,23,42,.55);
+    backdrop-filter:blur(5px);
     display:none;
-    align-items:center;
     justify-content:center;
-    z-index:100;
-    padding:20px;
+    align-items:center;
+    z-index:500;
+    padding:25px;
 }
 
 .modal.open{
     display:flex;
 }
 
-.modalBox{
-    background:white;
-    width:min(900px,100%);
+.modal-box{
+    width:min(980px,100%);
     max-height:92vh;
     overflow:auto;
-    border-radius:18px;
-    position:relative;
+    background:white;
+    border-radius:22px;
+    box-shadow:0 30px 80px rgba(0,0,0,.2);
 }
 
-.modalHero{
-    height:245px;
+.modal-cover{
+    height:270px;
     position:relative;
     background:#e5e7eb;
 }
 
-.modalHero img{
+.modal-cover img{
     width:100%;
     height:100%;
     object-fit:cover;
 }
 
-.modalClose{
+.modal-close{
     position:absolute;
-    top:14px;
-    right:14px;
+    right:16px;
+    top:16px;
     width:38px;
     height:38px;
+    border-radius:50%;
     border:0;
-    border-radius:9px;
-    background:white;
+    background:rgba(255,255,255,.9);
     font-size:18px;
 }
 
-.modalContent{
-    padding:25px;
+.modal-content{
+    padding:27px;
 }
 
-.modalTitle{
+.modal-title{
     display:flex;
     justify-content:space-between;
     gap:20px;
-    margin-bottom:22px;
 }
 
-.modalTitle h2{
-    font-size:25px;
+.modal-title h2{
+    font-size:28px;
 }
 
-.modalTitle p{
+.modal-location{
     color:var(--muted);
-    font-size:13px;
     margin-top:5px;
 }
 
-.modalSections{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
+.modal-actions{
+    display:flex;
+    gap:8px;
+    margin:20px 0;
 }
 
-.modalSection{
+.detail-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:20px 0;
+}
+
+.detail-box{
+    padding:15px;
     border:1px solid var(--border);
     border-radius:12px;
-    padding:16px;
 }
 
-.modalSection h4{
-    font-size:13px;
+.detail-label{
+    color:var(--muted);
+    font-size:11px;
+    margin-bottom:5px;
+}
+
+.detail-value{
+    font-weight:800;
+}
+
+.modal-sections{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.modal-section{
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:18px;
+}
+
+.modal-section h3{
     margin-bottom:12px;
 }
 
-.requireRow{
+.check{
     display:flex;
     justify-content:space-between;
-    padding:8px 0;
+    padding:9px 0;
     border-bottom:1px solid #f0f2f5;
-    font-size:12px;
+    font-size:13px;
 }
 
-.requireRow:last-child{
+.check:last-child{
     border-bottom:0;
 }
 
-.good{
-    color:#059669;
-    font-weight:700;
+.ok{
+    color:var(--green);
+    font-weight:800;
 }
 
-.warn{
-    color:#d97706;
-    font-weight:700;
+.no{
+    color:var(--red);
+    font-weight:800;
 }
 
-.modalActions{
-    display:flex;
-    gap:9px;
+.disclaimer{
     margin-top:18px;
+    padding:12px;
+    background:#fffbeb;
+    border:1px solid #fde68a;
+    color:#92400e;
+    border-radius:10px;
+    font-size:12px;
+    line-height:1.5;
 }
 
 /* EMPTY */
 
 .empty{
-    background:white;
-    border:1px dashed #cbd5e1;
-    border-radius:14px;
-    padding:55px;
+    padding:55px 20px;
     text-align:center;
-    color:#64748b;
+    color:var(--muted);
+}
+
+.empty h3{
+    color:#344054;
+    margin-bottom:6px;
 }
 
 /* MOBILE */
 
-.mobileMenu{
+.mobile-menu{
     display:none;
+    border:0;
+    background:transparent;
+    font-size:22px;
 }
 
 @media(max-width:1100px){
-    .uniGrid{
+    .uni-grid{
         grid-template-columns:repeat(2,1fr);
     }
 
     .stats{
         grid-template-columns:repeat(2,1fr);
     }
+
+    .tracker-grid{
+        grid-template-columns:1fr;
+    }
+
+    .ai-layout{
+        grid-template-columns:1fr;
+    }
 }
 
 @media(max-width:800px){
     .sidebar{
         transform:translateX(-100%);
-        transition:.2s;
+        transition:.25s;
     }
 
-    .sidebar.mobileOpen{
+    .sidebar.open{
         transform:translateX(0);
     }
 
@@ -902,24 +1059,20 @@ th{
         width:100%;
     }
 
-    .mobileMenu{
+    .mobile-menu{
         display:block;
-        border:0;
-        background:none;
-        font-size:22px;
-        margin-right:12px;
     }
 
     .topbar{
-        padding:0 16px;
+        padding:0 15px;
     }
 
-    .searchTop{
-        width:180px;
+    .search-box{
+        width:230px;
     }
 
-    .page{
-        padding:20px 16px;
+    .content{
+        padding:22px 15px 50px;
     }
 
     .hero{
@@ -927,7 +1080,17 @@ th{
         align-items:flex-start;
     }
 
-    .uniGrid{
+    .hero-side{
+        width:100%;
+    }
+
+    .uni-grid{
+        grid-template-columns:1fr;
+    }
+
+    .profile-grid,
+    .requirements-grid,
+    .modal-sections{
         grid-template-columns:1fr;
     }
 
@@ -935,24 +1098,29 @@ th{
         grid-template-columns:1fr;
     }
 
-    .profileGrid{
-        grid-template-columns:1fr;
+    .detail-grid{
+        grid-template-columns:1fr 1fr;
     }
+}
 
-    .aiLayout{
-        grid-template-columns:1fr;
-        height:auto;
-    }
-
-    .aiSide{
+@media(max-width:520px){
+    .top-right .status{
         display:none;
     }
 
-    .chat{
-        min-height:650px;
+    .search-box{
+        width:170px;
     }
 
-    .modalSections{
+    .hero h1{
+        font-size:28px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .detail-grid{
         grid-template-columns:1fr;
     }
 }
@@ -963,315 +1131,301 @@ th{
 
 <div class="app">
 
+<!-- SIDEBAR -->
+
 <aside class="sidebar" id="sidebar">
 
     <div class="logo">
-        <div class="logoMark">U</div>
-        <span>UniPath</span>
+        <div class="logo-mark">U</div>
+        <div class="logo-text">Uni<span>Path</span></div>
     </div>
 
-    <nav class="nav">
+    <div class="nav-title">Workspace</div>
 
-        <button class="active" onclick="showPage('overview',this)">
-            <span class="navIcon">⌂</span> Overview
-        </button>
+    <button class="nav-item active" onclick="showPage('overview',this)">
+        <span class="nav-icon">⌂</span>
+        Overview
+    </button>
 
-        <button onclick="showPage('universities',this)">
-            <span class="navIcon">🎓</span> Universities
-        </button>
+    <button class="nav-item" onclick="showPage('universities',this)">
+        <span class="nav-icon">🎓</span>
+        Universities
+    </button>
 
-        <button onclick="showPage('ai',this)">
-            <span class="navIcon">✦</span> AI Assistant
-        </button>
+    <button class="nav-item" onclick="showPage('saved',this)">
+        <span class="nav-icon">♡</span>
+        Saved
+    </button>
 
-        <button onclick="showPage('saved',this)">
-            <span class="navIcon">♡</span> Saved
-        </button>
+    <button class="nav-item" onclick="showPage('compare',this)">
+        <span class="nav-icon">⇄</span>
+        Compare
+    </button>
 
-        <button onclick="showPage('compare',this)">
-            <span class="navIcon">⇄</span> Compare
-        </button>
+    <button class="nav-item" onclick="showPage('ai',this)">
+        <span class="nav-icon">✦</span>
+        AI Assistant
+    </button>
 
-        <button onclick="showPage('requirements',this)">
-            <span class="navIcon">▣</span> Requirements
-        </button>
+    <div class="nav-title">Planning</div>
 
-        <button onclick="showPage('roadmap',this)">
-            <span class="navIcon">↗</span> Roadmap
-        </button>
+    <button class="nav-item" onclick="showPage('tracker',this)">
+        <span class="nav-icon">✓</span>
+        Application Tracker
+    </button>
 
-        <button onclick="showPage('profile',this)">
-            <span class="navIcon">●</span> My Profile
-        </button>
+    <button class="nav-item" onclick="showPage('roadmap',this)">
+        <span class="nav-icon">↗</span>
+        Roadmap
+    </button>
 
-    </nav>
+    <button class="nav-item" onclick="showPage('requirements',this)">
+        <span class="nav-icon">▤</span>
+        Requirements
+    </button>
 
-    <div class="sidebarBottom">
+    <div class="nav-title">Account</div>
 
-        <div class="profileMini">
+    <button class="nav-item" onclick="showPage('profile',this)">
+        <span class="nav-icon">◯</span>
+        My Profile
+    </button>
 
-            <div class="avatar" id="sideAvatar">N</div>
-
-            <div class="profileMiniText">
-                <strong id="sideName">Nurasyl</strong>
-                <span>Student · Grade 9</span>
+    <div class="sidebar-bottom">
+        <div class="profile-mini">
+            <div class="avatar" id="miniAvatar">N</div>
+            <div>
+                <strong id="miniName">Nurasyl</strong>
+                <div style="font-size:11px;color:#98a2b3">Student profile</div>
             </div>
-
         </div>
-
     </div>
 
 </aside>
+
+<!-- MAIN -->
 
 <main class="main">
 
 <header class="topbar">
 
-    <div style="display:flex;align-items:center;">
+    <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
 
-        <button class="mobileMenu" onclick="toggleMobileMenu()">☰</button>
-
-        <div class="searchTop">
-            <span class="searchIcon">⌕</span>
-            <input
-                id="globalSearch"
-                placeholder="Search universities..."
-                onkeydown="globalSearch(event)"
-            >
-        </div>
-
+    <div class="search-box">
+        🔎
+        <input
+            id="globalSearch"
+            placeholder="Search universities..."
+            oninput="globalSearch(this.value)"
+        >
     </div>
 
-    <div class="topRight">
-
-        <div class="topProfile">
-            <div class="avatar" id="topAvatar">N</div>
-            <span id="topName">Nurasyl</span>
-        </div>
-
+    <div class="top-right">
+        <div class="status">● Local profile</div>
+        <div class="avatar" id="topAvatar">N</div>
     </div>
 
 </header>
 
+<div class="content">
+
 <!-- OVERVIEW -->
 
-<section id="page-overview" class="page">
+<section class="page active" id="page-overview">
 
     <div class="hero">
 
-        <div class="heroText">
-
-            <h1>Plan your university future.</h1>
+        <div>
+            <h1>Plan your university journey with clarity.</h1>
 
             <p>
-                Discover universities, compare admission requirements,
-                understand your profile and build a roadmap for studying abroad.
+                Discover universities, compare requirements,
+                build your roadmap and understand where your profile stands.
             </p>
 
-            <div class="heroActions">
-
-                <button class="btn btnPrimary"
-                        onclick="showPage('universities')">
+            <div class="hero-actions">
+                <button class="btn" onclick="showPageById('universities')">
                     Explore universities
                 </button>
 
-                <button class="btn btnLight"
-                        onclick="showPage('ai')">
+                <button class="btn" onclick="showPageById('ai')">
                     Ask AI Assistant
                 </button>
-
             </div>
+        </div>
 
+        <div class="hero-side">
+            <div class="hero-side-label">Your current profile match</div>
+            <div class="hero-score" id="heroMatch">--</div>
+            <div style="color:#94a3b8;font-size:12px;margin-top:7px">
+                based on your current profile
+            </div>
         </div>
 
     </div>
 
     <div class="stats">
 
-        <div class="stat">
-            <div class="statLabel">Universities</div>
-            <div class="statValue" id="statUniversities">100+</div>
-            <div class="statSmall">Global catalog</div>
+        <div class="card stat">
+            <div class="stat-label">Target specialty</div>
+            <div class="stat-value" id="statSpecialty">CS</div>
         </div>
 
-        <div class="stat">
-            <div class="statLabel">Your specialty</div>
-            <div class="statValue" id="statSpecialty">CS</div>
-            <div class="statSmall">Current target</div>
+        <div class="card stat">
+            <div class="stat-label">Universities</div>
+            <div class="stat-value">110+</div>
         </div>
 
-        <div class="stat">
-            <div class="statLabel">Target SAT</div>
-            <div class="statValue" id="statSAT">1500</div>
-            <div class="statSmall">Your goal</div>
+        <div class="card stat">
+            <div class="stat-label">Target SAT</div>
+            <div class="stat-value" id="statSAT">1500</div>
         </div>
 
-        <div class="stat">
-            <div class="statLabel">Profile strength</div>
-            <div class="statValue" id="statStrength">—</div>
-            <div class="statSmall">Calculated locally</div>
+        <div class="card stat">
+            <div class="stat-label">Target IELTS</div>
+            <div class="stat-value" id="statIELTS">7.0</div>
         </div>
 
     </div>
 
-    <div class="sectionHeader">
-
-        <h2>Recommended universities</h2>
-
-        <button onclick="showPage('universities')">
-            View all →
-        </button>
-
+    <div class="section-head">
+        <h2>Recommended for you</h2>
+        <button onclick="showPageById('universities')">View all →</button>
     </div>
 
-    <div class="uniGrid" id="overviewGrid"></div>
+    <div class="uni-grid" id="overviewGrid"></div>
 
 </section>
 
+
 <!-- UNIVERSITIES -->
 
-<section id="page-universities" class="page" style="display:none">
+<section class="page" id="page-universities">
 
-    <div class="pageTitle">Universities</div>
-
-    <div class="pageSubtitle">
-        Explore the global catalog and find universities matching your profile.
+    <div class="page-header">
+        <h1>Universities</h1>
+        <p>Explore universities from around the world.</p>
     </div>
 
     <div class="filters">
 
         <input
-            id="uniSearch"
             class="input"
-            placeholder="Search university..."
+            id="uniSearch"
+            placeholder="Search university, city or country..."
             oninput="renderUniversities()"
         >
 
-        <select id="countryFilter"
-                class="select"
-                onchange="renderUniversities()">
+        <select class="select" id="countryFilter" onchange="renderUniversities()">
             <option value="">All countries</option>
         </select>
 
-        <select id="fieldFilter"
-                class="select"
-                onchange="renderUniversities()">
-
+        <select class="select" id="fieldFilter" onchange="renderUniversities()">
             <option value="">All fields</option>
             <option>Computer Science</option>
             <option>Engineering</option>
             <option>Business</option>
             <option>Economics</option>
-
+            <option>Data Science</option>
         </select>
 
-        <select id="sortFilter"
-                class="select"
-                onchange="renderUniversities()">
-
-            <option value="match">Best match</option>
+        <select class="select" id="sortFilter" onchange="renderUniversities()">
+            <option value="match">Best Match</option>
             <option value="name">Name</option>
-            <option value="sat">SAT requirement</option>
-
+            <option value="sat">SAT</option>
         </select>
 
     </div>
 
-    <div id="uniCount"
-         style="font-size:12px;color:#64748b;margin-bottom:15px">
-    </div>
-
-    <div class="uniGrid" id="universitiesGrid"></div>
+    <div class="uni-grid" id="universitiesGrid"></div>
 
 </section>
 
-<!-- AI -->
 
-<section id="page-ai" class="page" style="display:none">
+<!-- SAVED -->
 
-    <div class="pageTitle">AI Assistant</div>
+<section class="page" id="page-saved">
 
-    <div class="pageSubtitle">
-        Your personal university planning assistant.
+    <div class="page-header">
+        <h1>Saved Universities</h1>
+        <p>Universities you want to keep for later.</p>
     </div>
 
-    <div class="aiLayout">
+    <div class="uni-grid" id="savedGrid"></div>
 
-        <div class="aiSide">
+</section>
 
-            <h3>Quick actions</h3>
 
-            <button class="aiQuick"
-                    onclick="askAI('Analyze my profile')">
-                Analyze my profile
-            </button>
+<!-- COMPARE -->
 
-            <button class="aiQuick"
-                    onclick="askAI('What should I improve?')">
-                What should I improve?
-            </button>
+<section class="page" id="page-compare">
 
-            <button class="aiQuick"
-                    onclick="askAI('Find universities for me')">
-                Find universities for me
-            </button>
+    <div class="page-header">
+        <h1>Compare</h1>
+        <p>Compare your saved universities side by side.</p>
+    </div>
 
-            <button class="aiQuick"
-                    onclick="askAI('Explain my SAT requirements')">
-                Explain SAT requirements
-            </button>
+    <div class="card compare-table" id="compareContainer"></div>
 
-            <button class="aiQuick"
-                    onclick="askAI('Build my roadmap')">
-                Build my roadmap
-            </button>
+</section>
 
-            <button class="aiQuick"
-                    onclick="askAI('What is a safety university?')">
-                Explain safety / target / dream
-            </button>
 
-        </div>
+<!-- AI -->
 
-        <div class="chat">
+<section class="page" id="page-ai">
 
-            <div class="chatHeader">
+    <div class="page-header">
+        <h1>AI Assistant</h1>
+        <p>Your university planning assistant.</p>
+    </div>
 
-                <div class="aiAvatar">U</div>
+    <div class="ai-layout">
 
-                <div>
-                    <strong>UniPath AI</strong>
-                    <div style="font-size:11px;color:#64748b">
-                        University planning assistant
+        <div class="card ai-chat">
+
+            <div class="ai-header">
+
+                <div class="ai-title">
+                    <div class="ai-logo">✦</div>
+
+                    <div>
+                        <strong>UniPath AI</strong>
+                        <div style="font-size:12px;color:#98a2b3">
+                            Profile-aware university assistant
+                        </div>
                     </div>
                 </div>
 
+                <span style="font-size:12px;color:#98a2b3">
+                    Demo mode
+                </span>
+
             </div>
 
-            <div class="chatMessages" id="chatMessages">
+            <div class="ai-messages" id="aiMessages">
 
                 <div class="message ai">
-
-                    Hi! I'm your UniPath Assistant 👋
+                    Hey! I'm your UniPath Assistant. 👋
                     <br><br>
-                    I can analyze your profile, explain admission requirements,
-                    suggest universities from the catalog and help you build
-                    your Grade 9 → 11 roadmap.
-
+                    I can help you understand your university options,
+                    SAT/IELTS goals, profile gaps and application roadmap.
+                    <br><br>
+                    Ask me something like:
+                    <br>
+                    <b>“Which universities match my current profile?”</b>
                 </div>
 
             </div>
 
-            <div class="chatInput">
+            <div class="ai-input">
 
                 <input
                     id="aiInput"
                     placeholder="Ask something..."
-                    onkeydown="if(event.key==='Enter')sendAI()"
+                    onkeydown="if(event.key==='Enter') sendAI()"
                 >
 
-                <button class="btn btnPrimary"
-                        onclick="sendAI()">
+                <button class="btn primary" onclick="sendAI()">
                     Send
                 </button>
 
@@ -1279,347 +1433,420 @@ th{
 
         </div>
 
-    </div>
 
-</section>
+        <div class="card ai-side">
 
-<!-- SAVED -->
+            <h3>Quick questions</h3>
 
-<section id="page-saved" class="page" style="display:none">
+            <button class="ai-suggestion" onclick="askAI('Analyze my profile')">
+                Analyze my profile
+            </button>
 
-    <div class="pageTitle">Saved universities</div>
+            <button class="ai-suggestion" onclick="askAI('What should I improve?')">
+                What should I improve?
+            </button>
 
-    <div class="pageSubtitle">
-        Universities you want to keep on your list.
-    </div>
+            <button class="ai-suggestion" onclick="askAI('Find universities for me')">
+                Find universities for me
+            </button>
 
-    <div id="savedGrid" class="uniGrid"></div>
+            <button class="ai-suggestion" onclick="askAI('Explain SAT requirements')">
+                Explain SAT requirements
+            </button>
 
-</section>
+            <button class="ai-suggestion" onclick="askAI('Build my roadmap')">
+                Build my roadmap
+            </button>
 
-<!-- COMPARE -->
+            <button class="ai-suggestion" onclick="askAI('How can I improve my application?')">
+                Improve my application
+            </button>
 
-<section id="page-compare" class="page" style="display:none">
+            <div style="margin-top:25px;padding-top:18px;border-top:1px solid var(--border)">
+                <div style="font-size:12px;color:#98a2b3">
+                    CURRENT PROFILE
+                </div>
 
-    <div class="pageTitle">Compare</div>
-
-    <div class="pageSubtitle">
-        Compare your saved universities side by side.
-    </div>
-
-    <div id="compareArea"></div>
-
-</section>
-
-<!-- REQUIREMENTS -->
-
-<section id="page-requirements" class="page" style="display:none">
-
-    <div class="pageTitle">Requirements</div>
-
-    <div class="pageSubtitle">
-        Understand the main parts of an international application.
-    </div>
-
-    <div class="profileGrid">
-
-        <div class="card">
-
-            <h3>SAT</h3>
-
-            <p style="font-size:13px;line-height:1.6;color:#64748b">
-                Standardized test used by many universities in the United States
-                and accepted by some institutions internationally.
-            </p>
-
-        </div>
-
-        <div class="card">
-
-            <h3>IELTS</h3>
-
-            <p style="font-size:13px;line-height:1.6;color:#64748b">
-                English proficiency test. Required scores depend on the university
-                and program.
-            </p>
-
-        </div>
-
-        <div class="card">
-
-            <h3>GPA / grades</h3>
-
-            <p style="font-size:13px;line-height:1.6;color:#64748b">
-                Your academic performance across high school.
-            </p>
-
-        </div>
-
-        <div class="card">
-
-            <h3>Portfolio</h3>
-
-            <p style="font-size:13px;line-height:1.6;color:#64748b">
-                Projects, competitions, research, leadership and other evidence
-                of your interests and skills.
-            </p>
+                <div style="margin-top:9px;font-size:14px;line-height:1.7">
+                    <b id="aiProfileName">Nurasyl</b><br>
+                    Grade <span id="aiGrade">9</span><br>
+                    <span id="aiSpecialty">Computer Science</span><br>
+                    SAT <span id="aiSAT">1500</span><br>
+                    IELTS <span id="aiIELTS">7.0</span>
+                </div>
+            </div>
 
         </div>
 
     </div>
 
 </section>
+
+
+<!-- TRACKER -->
+
+<section class="page" id="page-tracker">
+
+    <div class="page-header">
+        <h1>Application Tracker</h1>
+        <p>Track the progress of your university applications.</p>
+    </div>
+
+    <div class="tracker-grid">
+
+        <div class="card tracker-column">
+            <h3>
+                Research
+                <span class="tracker-count" id="researchCount">0</span>
+            </h3>
+
+            <div id="researchCards"></div>
+        </div>
+
+        <div class="card tracker-column">
+            <h3>
+                Preparing
+                <span class="tracker-count" id="prepCount">0</span>
+            </h3>
+
+            <div id="prepCards"></div>
+        </div>
+
+        <div class="card tracker-column">
+            <h3>
+                Ready
+                <span class="tracker-count" id="readyCount">0</span>
+            </h3>
+
+            <div id="readyCards"></div>
+        </div>
+
+    </div>
+
+</section>
+
 
 <!-- ROADMAP -->
 
-<section id="page-roadmap" class="page" style="display:none">
+<section class="page" id="page-roadmap">
 
-    <div class="pageTitle">Your roadmap</div>
-
-    <div class="pageSubtitle">
-        A simple path from Grade 9 to university applications.
+    <div class="page-header">
+        <h1>Your Roadmap</h1>
+        <p>A simple plan from Grade 9 to university application.</p>
     </div>
 
     <div class="roadmap">
 
-        <div class="roadStep">
-
-            <div class="stepNumber">9</div>
+        <div class="card roadmap-item">
+            <div class="roadmap-number">9</div>
 
             <div>
                 <h3>Grade 9 — Build the foundation</h3>
-
                 <p>
-                    Improve English, learn programming fundamentals,
-                    explore CS, start SAT preparation and build your first projects.
+                    Strengthen English and mathematics, start programming,
+                    explore CS projects and build consistent study habits.
                 </p>
             </div>
-
         </div>
 
-        <div class="roadStep">
-
-            <div class="stepNumber">10</div>
+        <div class="card roadmap-item">
+            <div class="roadmap-number">10</div>
 
             <div>
                 <h3>Grade 10 — Build your profile</h3>
-
                 <p>
-                    Take stronger SAT/IELTS preparation, participate in competitions,
-                    develop serious projects and explore research opportunities.
+                    Prepare seriously for SAT/IELTS, participate in competitions,
+                    develop meaningful projects and document your achievements.
                 </p>
             </div>
-
         </div>
 
-        <div class="roadStep">
-
-            <div class="stepNumber">11</div>
+        <div class="card roadmap-item">
+            <div class="roadmap-number">11</div>
 
             <div>
                 <h3>Grade 11 — Applications</h3>
-
                 <p>
                     Finalize university list, essays, recommendations,
-                    testing, financial aid and applications.
+                    financial planning and application deadlines.
                 </p>
             </div>
-
         </div>
 
-        <div class="roadStep">
-
-            <div class="stepNumber">✓</div>
+        <div class="card roadmap-item">
+            <div class="roadmap-number">+</div>
 
             <div>
-                <h3>University</h3>
-
+                <h3>After admission</h3>
                 <p>
-                    Compare offers, finalize funding and prepare for your move.
+                    Compare offers, review financial aid and scholarships,
+                    prepare documents and choose your university.
                 </p>
             </div>
-
         </div>
 
     </div>
 
 </section>
 
-<!-- PROFILE -->
 
-<section id="page-profile" class="page" style="display:none">
+<!-- REQUIREMENTS -->
 
-    <div class="pageTitle">My Profile</div>
+<section class="page" id="page-requirements">
 
-    <div class="pageSubtitle">
-        UniPath uses this information to calculate your personal matches.
+    <div class="page-header">
+        <h1>Requirements</h1>
+        <p>Understand the major components of a strong application.</p>
     </div>
 
-    <div class="profileGrid">
+    <div class="requirements-grid">
 
-        <div class="card">
+        <div class="card req-card">
+            <h3>Academic</h3>
 
-            <h3>Academic profile</h3>
-
-            <div class="formGroup">
-
-                <label>Name</label>
-
-                <input class="input"
-                       id="profileName"
-                       value="Nurasyl">
-
+            <div class="req-item">
+                <span>GPA</span>
+                <strong>4.0+ target</strong>
             </div>
 
-            <div class="formGroup">
+            <div class="req-item">
+                <span>Math</span>
+                <strong>Strong</strong>
+            </div>
 
+            <div class="req-item">
+                <span>English</span>
+                <strong>Strong</strong>
+            </div>
+
+            <div class="req-item">
+                <span>Course rigor</span>
+                <strong>Important</strong>
+            </div>
+        </div>
+
+        <div class="card req-card">
+            <h3>Testing</h3>
+
+            <div class="req-item">
+                <span>SAT</span>
+                <strong>1450–1550+</strong>
+            </div>
+
+            <div class="req-item">
+                <span>IELTS</span>
+                <strong>7.0+</strong>
+            </div>
+
+            <div class="req-item">
+                <span>TOEFL</span>
+                <strong>100+</strong>
+            </div>
+
+            <div class="req-item">
+                <span>Subject tests</span>
+                <strong>Depends</strong>
+            </div>
+        </div>
+
+        <div class="card req-card">
+            <h3>Portfolio</h3>
+
+            <div class="req-item">
+                <span>Projects</span>
+                <strong>Recommended</strong>
+            </div>
+
+            <div class="req-item">
+                <span>Olympiads</span>
+                <strong>Useful</strong>
+            </div>
+
+            <div class="req-item">
+                <span>Leadership</span>
+                <strong>Useful</strong>
+            </div>
+
+            <div class="req-item">
+                <span>Activities</span>
+                <strong>Important</strong>
+            </div>
+        </div>
+
+        <div class="card req-card">
+            <h3>Application</h3>
+
+            <div class="req-item">
+                <span>Essays</span>
+                <strong>Often required</strong>
+            </div>
+
+            <div class="req-item">
+                <span>Recommendations</span>
+                <strong>Often required</strong>
+            </div>
+
+            <div class="req-item">
+                <span>Deadlines</span>
+                <strong>University-specific</strong>
+            </div>
+
+            <div class="req-item">
+                <span>Financial aid</span>
+                <strong>Check separately</strong>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section class="page" id="page-profile">
+
+    <div class="page-header">
+        <h1>My Profile</h1>
+        <p>Keep your academic profile updated to improve your recommendations.</p>
+    </div>
+
+    <div class="profile-grid">
+
+        <div class="card form-card">
+
+            <div class="form-group">
+                <label>Name</label>
+                <input class="input" id="profileName" value="Nurasyl">
+            </div>
+
+            <div class="form-group">
                 <label>Grade</label>
-
                 <select class="select" id="profileGrade">
-
                     <option>9</option>
                     <option>10</option>
                     <option>11</option>
-
                 </select>
-
             </div>
 
-            <div class="formGroup">
-
+            <div class="form-group">
                 <label>Specialty</label>
-
                 <select class="select" id="profileSpecialty">
-
                     <option>Computer Science</option>
                     <option>Engineering</option>
                     <option>Business</option>
                     <option>Economics</option>
-
+                    <option>Data Science</option>
                 </select>
-
             </div>
 
-            <div class="formGroup">
-
+            <div class="form-group">
                 <label>Target SAT</label>
-
-                <input class="input"
-                       type="number"
-                       id="profileSAT"
-                       value="1500">
-
+                <input class="input" id="profileSAT" type="number" value="1500">
             </div>
 
-            <div class="formGroup">
-
-                <label>Target IELTS</label>
-
-                <input class="input"
-                       type="number"
-                       step=".5"
-                       id="profileIELTS"
-                       value="7">
-
+            <div class="form-group">
+                <label>IELTS</label>
+                <input class="input" id="profileIELTS" type="number" step=".5" value="7">
             </div>
 
-            <div class="formGroup">
-
-                <label>GPA / school average</label>
-
-                <input class="input"
-                       type="number"
-                       step=".1"
-                       id="profileGPA"
-                       value="4.5">
-
+            <div class="form-group">
+                <label>GPA</label>
+                <input class="input" id="profileGPA" type="number" step=".1" value="4.5">
             </div>
 
-            <button class="btn btnPrimary"
-                    onclick="saveProfile()">
+            <div class="form-group">
+                <label>Portfolio</label>
+                <select class="select" id="profilePortfolio">
+                    <option>Developing</option>
+                    <option>Good</option>
+                    <option>Strong</option>
+                    <option>Excellent</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Preferred destination</label>
+                <select class="select" id="profileDestination">
+                    <option>USA</option>
+                    <option>Canada</option>
+                    <option>UK</option>
+                    <option>China</option>
+                    <option>Hong Kong</option>
+                    <option>Singapore</option>
+                    <option>Japan</option>
+                    <option>South Korea</option>
+                    <option>Australia</option>
+                    <option>Europe</option>
+                </select>
+            </div>
+
+            <button class="btn primary" onclick="saveProfile()">
                 Save profile
             </button>
 
         </div>
 
-        <div class="card">
 
-            <h3>Profile strength</h3>
+        <div class="card form-card">
 
-            <div class="profileStrength">
+            <h3 style="margin-bottom:20px">Profile strength</h3>
 
-                <div class="strengthRow">
+            <div class="profile-strength">
 
-                    <span>Academics</span>
-
-                    <div class="progress">
-                        <div id="academicsBar"
-                             class="progressBar"
-                             style="width:70%">
-                        </div>
+                <div class="progress-row">
+                    <div class="progress-label">
+                        <span>Academics</span>
+                        <strong id="academicScore">--</strong>
                     </div>
 
-                    <strong id="academicsValue">70%</strong>
-
+                    <div class="progress">
+                        <div class="progress-fill" id="academicBar"></div>
+                    </div>
                 </div>
 
-                <div class="strengthRow">
-
-                    <span>English</span>
-
-                    <div class="progress">
-                        <div id="englishBar"
-                             class="progressBar"
-                             style="width:70%">
-                        </div>
+                <div class="progress-row">
+                    <div class="progress-label">
+                        <span>English</span>
+                        <strong id="englishScore">--</strong>
                     </div>
 
-                    <strong id="englishValue">70%</strong>
-
+                    <div class="progress">
+                        <div class="progress-fill" id="englishBar"></div>
+                    </div>
                 </div>
 
-                <div class="strengthRow">
-
-                    <span>Testing</span>
-
-                    <div class="progress">
-                        <div id="testingBar"
-                             class="progressBar"
-                             style="width:70%">
-                        </div>
+                <div class="progress-row">
+                    <div class="progress-label">
+                        <span>Testing</span>
+                        <strong id="testingScore">--</strong>
                     </div>
 
-                    <strong id="testingValue">70%</strong>
-
+                    <div class="progress">
+                        <div class="progress-fill" id="testingBar"></div>
+                    </div>
                 </div>
 
-                <div class="strengthRow">
-
-                    <span>Portfolio</span>
-
-                    <div class="progress">
-                        <div id="portfolioBar"
-                             class="progressBar"
-                             style="width:50%">
-                        </div>
+                <div class="progress-row">
+                    <div class="progress-label">
+                        <span>Portfolio</span>
+                        <strong id="portfolioScore">--</strong>
                     </div>
 
-                    <strong id="portfolioValue">50%</strong>
-
+                    <div class="progress">
+                        <div class="progress-fill" id="portfolioBar"></div>
+                    </div>
                 </div>
 
             </div>
 
-            <div style="margin-top:25px;padding:15px;background:#f8fafc;border-radius:10px">
+            <div style="margin-top:30px;padding:18px;background:#f8fafc;border-radius:14px">
+                <div style="font-size:12px;color:#98a2b3;margin-bottom:7px">
+                    PROFILE SUMMARY
+                </div>
 
-                <strong style="font-size:13px">
-                    Current strategy
-                </strong>
-
-                <p id="profileAdvice"
-                   style="font-size:12px;color:#64748b;line-height:1.5;margin-top:7px">
-                </p>
-
+                <div id="profileSummary" style="line-height:1.7;font-size:14px">
+                </div>
             </div>
 
         </div>
@@ -1628,163 +1855,144 @@ th{
 
 </section>
 
+</div>
 </main>
 </div>
 
-<!-- MODAL -->
 
-<div class="modal" id="modal">
+<!-- UNIVERSITY MODAL -->
 
-    <div class="modalBox">
+<div class="modal" id="uniModal">
 
-        <div class="modalHero">
+    <div class="modal-box">
 
-            <img id="modalImage"
-                 src=""
-                 alt="University campus">
+        <div class="modal-cover">
 
-            <button class="modalClose"
-                    onclick="closeModal()">
-                ×
-            </button>
+            <img id="modalImage" src="" alt="University">
+
+            <button class="modal-close" onclick="closeModal()">×</button>
 
         </div>
 
-        <div class="modalContent">
+        <div class="modal-content">
 
-            <div class="modalTitle">
+            <div class="modal-title">
 
                 <div>
-
                     <h2 id="modalName"></h2>
-
-                    <p id="modalLocation"></p>
-
+                    <div class="modal-location" id="modalLocation"></div>
                 </div>
 
-                <div class="matchBadge"
-                     style="position:static;height:max-content"
-                     id="modalMatch">
+                <div class="match" id="modalMatch">--</div>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button class="btn primary" id="modalSave" onclick="saveFromModal()">
+                    Save
+                </button>
+
+                <button class="btn" onclick="compareFromModal()">
+                    Add to Compare
+                </button>
+
+                <button class="btn" onclick="openOfficialWebsite()">
+                    Official website ↗
+                </button>
+
+            </div>
+
+            <div class="detail-grid">
+
+                <div class="detail-box">
+                    <div class="detail-label">SAT</div>
+                    <div class="detail-value" id="modalSAT"></div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">IELTS</div>
+                    <div class="detail-value" id="modalIELTS"></div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">GPA</div>
+                    <div class="detail-value" id="modalGPA"></div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">Tuition</div>
+                    <div class="detail-value" id="modalTuition"></div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">Scholarships</div>
+                    <div class="detail-value" id="modalScholarship"></div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">Deadline</div>
+                    <div class="detail-value" id="modalDeadline"></div>
                 </div>
 
             </div>
 
-            <div class="modalSections">
+            <div class="modal-sections">
 
-                <div class="modalSection">
+                <div class="modal-section">
 
-                    <h4>Admission requirements</h4>
+                    <h3>Admission requirements</h3>
 
-                    <div class="requireRow">
+                    <div class="check">
                         <span>SAT</span>
-                        <strong id="modalSAT"></strong>
+                        <strong id="checkSAT"></strong>
                     </div>
 
-                    <div class="requireRow">
+                    <div class="check">
                         <span>IELTS</span>
-                        <strong id="modalIELTS"></strong>
+                        <strong id="checkIELTS"></strong>
                     </div>
 
-                    <div class="requireRow">
+                    <div class="check">
                         <span>GPA</span>
-                        <strong id="modalGPA"></strong>
+                        <strong id="checkGPA"></strong>
                     </div>
 
-                    <div class="requireRow">
+                    <div class="check">
                         <span>Portfolio</span>
-                        <strong id="modalPortfolio"></strong>
+                        <strong id="checkPortfolio"></strong>
                     </div>
 
                 </div>
 
-                <div class="modalSection">
+                <div class="modal-section">
 
-                    <h4>Estimated costs</h4>
+                    <h3>Application</h3>
 
-                    <div class="requireRow">
-                        <span>Tuition</span>
-                        <strong id="modalTuition"></strong>
+                    <div class="check">
+                        <span>Application</span>
+                        <strong id="modalApplication"></strong>
                     </div>
 
-                    <div class="requireRow">
-                        <span>Scholarships</span>
-                        <strong id="modalScholarship"></strong>
+                    <div class="check">
+                        <span>Essays</span>
+                        <strong id="modalEssays"></strong>
                     </div>
 
-                    <div class="requireRow">
+                    <div class="check">
                         <span>Financial aid</span>
                         <strong id="modalAid"></strong>
                     </div>
 
                 </div>
 
-                <div class="modalSection">
-
-                    <h4>Your profile</h4>
-
-                    <div class="requireRow">
-                        <span>Your SAT</span>
-                        <strong id="checkSAT"></strong>
-                    </div>
-
-                    <div class="requireRow">
-                        <span>Your IELTS</span>
-                        <strong id="checkIELTS"></strong>
-                    </div>
-
-                    <div class="requireRow">
-                        <span>Your GPA</span>
-                        <strong id="checkGPA"></strong>
-                    </div>
-
-                </div>
-
-                <div class="modalSection">
-
-                    <h4>Application</h4>
-
-                    <div class="requireRow">
-                        <span>Deadline</span>
-                        <strong id="modalDeadline"></strong>
-                    </div>
-
-                    <div class="requireRow">
-                        <span>Application</span>
-                        <strong id="modalApplication"></strong>
-                    </div>
-
-                    <div class="requireRow">
-                        <span>Essays</span>
-                        <strong id="modalEssays"></strong>
-                    </div>
-
-                </div>
-
             </div>
 
-            <div class="modalActions">
-
-                <button class="btn btnPrimary"
-                        onclick="saveCurrentUniversity()">
-                    ♡ Save
-                </button>
-
-                <button class="btn btnOutline"
-                        onclick="addCurrentCompare()">
-                    ⇄ Compare
-                </button>
-
-                <button class="btn btnOutline"
-                        onclick="openOfficialWebsite()">
-                    Official website ↗
-                </button>
-
+            <div class="disclaimer">
+                Demo/reference data for the UniPath prototype.
+                Always verify current requirements, deadlines, tuition,
+                scholarships and application rules on the university's official website.
             </div>
-
-            <p style="font-size:10px;color:#94a3b8;margin-top:16px">
-                Demo data: requirements, costs and deadlines must be verified
-                against the official university website before an application.
-            </p>
 
         </div>
 
@@ -1792,1146 +2000,1062 @@ th{
 
 </div>
 
+
 <script>
 
-/* =========================
-   PROFILE
-========================= */
+/* =========================================================
+   UNIPATH 4.0
+   ========================================================= */
 
-let profile = JSON.parse(
-    localStorage.getItem("unipathProfile4")
-) || {
-
-    name:"Nurasyl",
-    grade:9,
-    specialty:"Computer Science",
-    sat:1500,
-    ielts:7,
-    gpa:4.5
-
-};
-
-let saved = JSON.parse(
-    localStorage.getItem("unipathSaved4")
-) || [];
-
-let compare = JSON.parse(
-    localStorage.getItem("unipathCompare4")
-) || [];
-
-let currentUniversity = null;
+/* ---------- UNIVERSITY DATA ---------- */
 
 const universities = [
 
-/* USA */
-
-{name:"Massachusetts Institute of Technology",city:"Cambridge, Massachusetts",country:"USA",field:"Computer Science",sat:"1550+",ielts:"7.5+",gpa:"4.7+",tuition:"$60k+",scholarship:"Need-based",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"MIT",url:"https://www.mit.edu/"},
-
-{name:"Stanford University",city:"Stanford, California",country:"USA",field:"Computer Science",sat:"1550+",ielts:"7.5+",gpa:"4.7+",tuition:"$60k+",scholarship:"Need-based",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"S",url:"https://www.stanford.edu/"},
-
-{name:"Harvard University",city:"Cambridge, Massachusetts",country:"USA",field:"Computer Science",sat:"1550+",ielts:"7.5+",gpa:"4.7+",tuition:"$60k+",scholarship:"Need-based",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"H",url:"https://www.harvard.edu/"},
-
-{name:"California Institute of Technology",city:"Pasadena, California",country:"USA",field:"Engineering",sat:"1540+",ielts:"7.5+",gpa:"4.7+",tuition:"$60k+",scholarship:"Need-based",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"CIT",url:"https://www.caltech.edu/"},
-
-{name:"Princeton University",city:"Princeton, New Jersey",country:"USA",field:"Computer Science",sat:"1500+",ielts:"7.5+",gpa:"4.7+",tuition:"$60k+",scholarship:"Need-based",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"P",url:"https://www.princeton.edu/"},
-
-{name:"Yale University",city:"New Haven, Connecticut",country:"USA",field:"Computer Science",sat:"1500+",ielts:"7.0+",gpa:"4.6+",tuition:"$65k+",scholarship:"Need-based",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"Y",url:"https://www.yale.edu/"},
-
-{name:"Columbia University",city:"New York, New York",country:"USA",field:"Computer Science",sat:"1500+",ielts:"7.0+",gpa:"4.6+",tuition:"$70k+",scholarship:"Need-based",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"CU",url:"https://www.columbia.edu/"},
-
-{name:"University of Pennsylvania",city:"Philadelphia, Pennsylvania",country:"USA",field:"Computer Science",sat:"1500+",ielts:"7.0+",gpa:"4.6+",tuition:"$65k+",scholarship:"Need-based",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"UP",url:"https://www.upenn.edu/"},
-
-{name:"Cornell University",city:"Ithaca, New York",country:"USA",field:"Computer Science",sat:"1500+",ielts:"7.0+",gpa:"4.6+",tuition:"$65k+",scholarship:"Need-based",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"C",url:"https://www.cornell.edu/"},
-
-{name:"University of Chicago",city:"Chicago, Illinois",country:"USA",field:"Computer Science",sat:"1500+",ielts:"7.0+",gpa:"4.6+",tuition:"$65k+",scholarship:"Need-based",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"UC",url:"https://www.uchicago.edu/"},
-
-{name:"University of California, Berkeley",city:"Berkeley, California",country:"USA",field:"Computer Science",sat:"1500+",ielts:"7.0+",gpa:"4.5+",tuition:"$50k+",scholarship:"Limited",aid:"Limited",deadline:"Nov",application:"UC Application",essays:"Yes",initials:"UCB",url:"https://www.berkeley.edu/"},
-
-{name:"UCLA",city:"Los Angeles, California",country:"USA",field:"Computer Science",sat:"1480+",ielts:"7.0+",gpa:"4.5+",tuition:"$50k+",scholarship:"Limited",aid:"Limited",deadline:"Nov",application:"UC Application",essays:"Yes",initials:"UCLA",url:"https://www.ucla.edu/"},
-
-{name:"University of Michigan",city:"Ann Arbor, Michigan",country:"USA",field:"Computer Science",sat:"1480+",ielts:"7.0+",gpa:"4.5+",tuition:"$55k+",scholarship:"Available",aid:"Available",deadline:"Feb",application:"Common App",essays:"Yes",initials:"UM",url:"https://umich.edu/"},
-
-{name:"Georgia Tech",city:"Atlanta, Georgia",country:"USA",field:"Engineering",sat:"1480+",ielts:"7.0+",gpa:"4.5+",tuition:"$35k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"Common App",essays:"Yes",initials:"GT",url:"https://www.gatech.edu/"},
-
-{name:"University of Illinois Urbana-Champaign",city:"Champaign, Illinois",country:"USA",field:"Computer Science",sat:"1480+",ielts:"7.0+",gpa:"4.5+",tuition:"$40k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"Common App",essays:"Yes",initials:"UIUC",url:"https://illinois.edu/"},
-
-{name:"University of Texas at Austin",city:"Austin, Texas",country:"USA",field:"Computer Science",sat:"1480+",ielts:"7.0+",gpa:"4.5+",tuition:"$40k+",scholarship:"Available",aid:"Limited",deadline:"Dec",application:"ApplyTexas",essays:"Yes",initials:"UT",url:"https://www.utexas.edu/"},
-
-{name:"University of Washington",city:"Seattle, Washington",country:"USA",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"$40k+",scholarship:"Available",aid:"Limited",deadline:"Nov",application:"Common App",essays:"Yes",initials:"UW",url:"https://www.washington.edu/"},
-
-{name:"University of Maryland",city:"College Park, Maryland",country:"USA",field:"Computer Science",sat:"1480+",ielts:"7.0+",gpa:"4.5+",tuition:"$40k+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"UMD",url:"https://umd.edu/"},
-
-{name:"Purdue University",city:"West Lafayette, Indiana",country:"USA",field:"Engineering",sat:"1400+",ielts:"6.5+",gpa:"4.3+",tuition:"$30k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"Common App",essays:"Yes",initials:"PU",url:"https://www.purdue.edu/"},
-
-{name:"University of Wisconsin-Madison",city:"Madison, Wisconsin",country:"USA",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"$40k+",scholarship:"Available",aid:"Limited",deadline:"Feb",application:"Common App",essays:"Yes",initials:"UW",url:"https://www.wisc.edu/"},
-
-{name:"UMass Amherst",city:"Amherst, Massachusetts",country:"USA",field:"Computer Science",sat:"1400+",ielts:"7.0+",gpa:"4.3+",tuition:"$40k+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"UM",url:"https://www.umass.edu/"},
-
-{name:"Northeastern University",city:"Boston, Massachusetts",country:"USA",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"$60k+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"NEU",url:"https://www.northeastern.edu/"},
-
-{name:"Boston University",city:"Boston, Massachusetts",country:"USA",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"$65k+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"BU",url:"https://www.bu.edu/"},
-
-{name:"New York University",city:"New York, New York",country:"USA",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"$65k+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"NYU",url:"https://www.nyu.edu/"},
-
-{name:"Duke University",city:"Durham, North Carolina",country:"USA",field:"Computer Science",sat:"1500+",ielts:"7.0+",gpa:"4.6+",tuition:"$65k+",scholarship:"Need-based",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"D",url:"https://duke.edu/"},
-
-{name:"Carnegie Mellon University",city:"Pittsburgh, Pennsylvania",country:"USA",field:"Computer Science",sat:"1550+",ielts:"7.5+",gpa:"4.6+",tuition:"$65k+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"CMU",url:"https://www.cmu.edu/"},
-
-{name:"USC",city:"Los Angeles, California",country:"USA",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"$65k+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"USC",url:"https://www.usc.edu/"},
-
-{name:"University of Virginia",city:"Charlottesville, Virginia",country:"USA",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"$55k+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"UVA",url:"https://www.virginia.edu/"},
-
-{name:"Penn State",city:"University Park, Pennsylvania",country:"USA",field:"Computer Science",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"$38k+",scholarship:"Available",aid:"Limited",deadline:"Dec",application:"Common App",essays:"Yes",initials:"PSU",url:"https://psu.edu/"},
-
-{name:"UC San Diego",city:"La Jolla, California",country:"USA",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.5+",tuition:"$50k+",scholarship:"Limited",aid:"Limited",deadline:"Nov",application:"UC Application",essays:"Yes",initials:"UCSD",url:"https://ucsd.edu/"},
-
-/* CANADA */
-
-{name:"University of Toronto",city:"Toronto, Ontario",country:"Canada",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"CAD 60k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"University",essays:"Sometimes",initials:"UofT",url:"https://www.utoronto.ca/"},
-
-{name:"University of Waterloo",city:"Waterloo, Ontario",country:"Canada",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"CAD 55k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"OUAC",essays:"Yes",initials:"W",url:"https://uwaterloo.ca/"},
-
-{name:"University of British Columbia",city:"Vancouver, BC",country:"Canada",field:"Computer Science",sat:"1400+",ielts:"6.5+",gpa:"4.3+",tuition:"CAD 45k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"UBC Application",essays:"Yes",initials:"UBC",url:"https://www.ubc.ca/"},
-
-{name:"McGill University",city:"Montreal, Quebec",country:"Canada",field:"Computer Science",sat:"1400+",ielts:"6.5+",gpa:"4.3+",tuition:"CAD 35k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"University",essays:"Sometimes",initials:"MG",url:"https://www.mcgill.ca/"},
-
-{name:"McMaster University",city:"Hamilton, Ontario",country:"Canada",field:"Engineering",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"CAD 40k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"OUAC",essays:"Yes",initials:"M",url:"https://www.mcmaster.ca/"},
-
-{name:"University of Alberta",city:"Edmonton, Alberta",country:"Canada",field:"Computer Science",sat:"1300+",ielts:"6.5+",gpa:"4.1+",tuition:"CAD 35k+",scholarship:"Available",aid:"Limited",deadline:"Mar",application:"University",essays:"No",initials:"UA",url:"https://www.ualberta.ca/"},
-
-{name:"University of Calgary",city:"Calgary, Alberta",country:"Canada",field:"Engineering",sat:"1300+",ielts:"6.5+",gpa:"4.1+",tuition:"CAD 32k+",scholarship:"Available",aid:"Limited",deadline:"Mar",application:"University",essays:"No",initials:"UC",url:"https://www.ucalgary.ca/"},
-
-{name:"University of Ottawa",city:"Ottawa, Ontario",country:"Canada",field:"Computer Science",sat:"1300+",ielts:"6.5+",gpa:"4.1+",tuition:"CAD 35k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"OUAC",essays:"Sometimes",initials:"UO",url:"https://www.uottawa.ca/"},
-
-/* UK */
-
-{name:"University of Oxford",city:"Oxford",country:"UK",field:"Computer Science",sat:"1500+",ielts:"7.5+",gpa:"4.6+",tuition:"£40k+",scholarship:"Available",aid:"Limited",deadline:"Oct",application:"UCAS",essays:"Personal statement",initials:"O",url:"https://www.ox.ac.uk/"},
-
-{name:"University of Cambridge",city:"Cambridge",country:"UK",field:"Computer Science",sat:"1500+",ielts:"7.5+",gpa:"4.6+",tuition:"£40k+",scholarship:"Available",aid:"Limited",deadline:"Oct",application:"UCAS",essays:"Personal statement",initials:"C",url:"https://www.cam.ac.uk/"},
-
-{name:"Imperial College London",city:"London",country:"UK",field:"Engineering",sat:"1500+",ielts:"7.0+",gpa:"4.5+",tuition:"£40k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"IC",url:"https://www.imperial.ac.uk/"},
-
-{name:"University College London",city:"London",country:"UK",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"£35k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"UCL",url:"https://www.ucl.ac.uk/"},
-
-{name:"University of Edinburgh",city:"Edinburgh",country:"UK",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"£35k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"E",url:"https://www.ed.ac.uk/"},
-
-{name:"King's College London",city:"London",country:"UK",field:"Computer Science",sat:"1400+",ielts:"7.0+",gpa:"4.3+",tuition:"£35k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"KCL",url:"https://www.kcl.ac.uk/"},
-
-{name:"University of Manchester",city:"Manchester",country:"UK",field:"Computer Science",sat:"1400+",ielts:"6.5+",gpa:"4.2+",tuition:"£30k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"UoM",url:"https://www.manchester.ac.uk/"},
-
-{name:"University of Bristol",city:"Bristol",country:"UK",field:"Computer Science",sat:"1400+",ielts:"6.5+",gpa:"4.2+",tuition:"£30k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"B",url:"https://www.bristol.ac.uk/"},
-
-{name:"University of Warwick",city:"Coventry",country:"UK",field:"Computer Science",sat:"1400+",ielts:"7.0+",gpa:"4.3+",tuition:"£30k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"W",url:"https://warwick.ac.uk/"},
-
-{name:"University of Glasgow",city:"Glasgow",country:"UK",field:"Computer Science",sat:"1350+",ielts:"6.5+",gpa:"4.1+",tuition:"£28k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"G",url:"https://www.gla.ac.uk/"},
-
-/* EUROPE */
-
-{name:"ETH Zurich",city:"Zurich",country:"Switzerland",field:"Engineering",sat:"1500+",ielts:"7.0+",gpa:"4.6+",tuition:"CHF 2k+",scholarship:"Available",aid:"Limited",deadline:"Apr",application:"University",essays:"Sometimes",initials:"ETH",url:"https://ethz.ch/"},
-
-{name:"EPFL",city:"Lausanne",country:"Switzerland",field:"Engineering",sat:"1450+",ielts:"7.0+",gpa:"4.5+",tuition:"CHF 2k+",scholarship:"Available",aid:"Limited",deadline:"Apr",application:"University",essays:"Sometimes",initials:"EPFL",url:"https://www.epfl.ch/"},
-
-{name:"Technical University of Munich",city:"Munich",country:"Germany",field:"Engineering",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"Low/varies",scholarship:"Available",aid:"Limited",deadline:"May",application:"University",essays:"Sometimes",initials:"TUM",url:"https://www.tum.de/"},
-
-{name:"RWTH Aachen University",city:"Aachen",country:"Germany",field:"Engineering",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"Low/varies",scholarship:"Available",aid:"Limited",deadline:"May",application:"University",essays:"Sometimes",initials:"RWTH",url:"https://www.rwth-aachen.de/"},
-
-{name:"LMU Munich",city:"Munich",country:"Germany",field:"Computer Science",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"Low/varies",scholarship:"Available",aid:"Limited",deadline:"May",application:"University",essays:"Sometimes",initials:"LMU",url:"https://www.lmu.de/"},
-
-{name:"University of Amsterdam",city:"Amsterdam",country:"Netherlands",field:"Computer Science",sat:"1400+",ielts:"7.0+",gpa:"4.3+",tuition:"€15k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"University",essays:"Sometimes",initials:"UvA",url:"https://www.uva.nl/"},
-
-{name:"Delft University of Technology",city:"Delft",country:"Netherlands",field:"Engineering",sat:"1400+",ielts:"7.0+",gpa:"4.4+",tuition:"€20k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"University",essays:"Sometimes",initials:"TU",url:"https://www.tudelft.nl/"},
-
-{name:"Eindhoven University of Technology",city:"Eindhoven",country:"Netherlands",field:"Engineering",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"€15k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"University",essays:"Sometimes",initials:"TUe",url:"https://www.tue.nl/"},
-
-{name:"Utrecht University",city:"Utrecht",country:"Netherlands",field:"Computer Science",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"€15k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"University",essays:"Sometimes",initials:"UU",url:"https://www.uu.nl/"},
-
-/* CHINA */
-
-{name:"Tsinghua University",city:"Beijing",country:"China",field:"Engineering",sat:"1500+",ielts:"7.0+",gpa:"4.5+",tuition:"¥30k+",scholarship:"Available",aid:"Available",deadline:"Apr",application:"University",essays:"Yes",initials:"TH",url:"https://www.tsinghua.edu.cn/"},
-
-{name:"Peking University",city:"Beijing",country:"China",field:"Computer Science",sat:"1500+",ielts:"7.0+",gpa:"4.5+",tuition:"¥30k+",scholarship:"Available",aid:"Available",deadline:"Apr",application:"University",essays:"Yes",initials:"PKU",url:"https://english.pku.edu.cn/"},
-
-{name:"Shanghai Jiao Tong University",city:"Shanghai",country:"China",field:"Engineering",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"¥30k+",scholarship:"Available",aid:"Available",deadline:"Apr",application:"University",essays:"Yes",initials:"SJTU",url:"https://en.sjtu.edu.cn/"},
-
-{name:"Fudan University",city:"Shanghai",country:"China",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"¥30k+",scholarship:"Available",aid:"Available",deadline:"Apr",application:"University",essays:"Yes",initials:"FDU",url:"https://www.fudan.edu.cn/en/"},
-
-{name:"Zhejiang University",city:"Hangzhou",country:"China",field:"Engineering",sat:"1400+",ielts:"6.5+",gpa:"4.3+",tuition:"¥25k+",scholarship:"Available",aid:"Available",deadline:"Apr",application:"University",essays:"Yes",initials:"ZJU",url:"https://www.zju.edu.cn/english/"},
-
-{name:"NYU Shanghai",city:"Shanghai",country:"China",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"$60k+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"Common App",essays:"Yes",initials:"NYU",url:"https://shanghai.nyu.edu/"},
-
-/* HONG KONG */
-
-{name:"HKUST",city:"Hong Kong",country:"Hong Kong",field:"Engineering",sat:"1450+",ielts:"6.5+",gpa:"4.4+",tuition:"HK$150k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"University",essays:"Yes",initials:"HKUST",url:"https://hkust.edu.hk/"},
-
-{name:"University of Hong Kong",city:"Hong Kong",country:"Hong Kong",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"HK$170k+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"University",essays:"Yes",initials:"HKU",url:"https://www.hku.hk/"},
-
-{name:"Chinese University of Hong Kong",city:"Hong Kong",country:"Hong Kong",field:"Computer Science",sat:"1400+",ielts:"6.5+",gpa:"4.3+",tuition:"HK$150k+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"University",essays:"Yes",initials:"CUHK",url:"https://www.cuhk.edu.hk/"},
-
-{name:"Hong Kong Polytechnic University",city:"Hong Kong",country:"Hong Kong",field:"Engineering",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"HK$145k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"University",essays:"Yes",initials:"PolyU",url:"https://www.polyu.edu.hk/"},
-
-/* SINGAPORE */
-
-{name:"National University of Singapore",city:"Singapore",country:"Singapore",field:"Computer Science",sat:"1500+",ielts:"7.0+",gpa:"4.5+",tuition:"SGD 40k+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"University",essays:"Yes",initials:"NUS",url:"https://www.nus.edu.sg/"},
-
-{name:"Nanyang Technological University",city:"Singapore",country:"Singapore",field:"Engineering",sat:"1450+",ielts:"7.0+",gpa:"4.4+",tuition:"SGD 35k+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"University",essays:"Yes",initials:"NTU",url:"https://www.ntu.edu.sg/"},
-
-{name:"Singapore Management University",city:"Singapore",country:"Singapore",field:"Computer Science",sat:"1400+",ielts:"6.5+",gpa:"4.3+",tuition:"SGD 45k+",scholarship:"Available",aid:"Limited",deadline:"Mar",application:"University",essays:"Yes",initials:"SMU",url:"https://www.smu.edu.sg/"},
-
-/* JAPAN */
-
-{name:"University of Tokyo",city:"Tokyo",country:"Japan",field:"Engineering",sat:"1450+",ielts:"7.0+",gpa:"4.5+",tuition:"¥550k+",scholarship:"Available",aid:"Available",deadline:"Dec",application:"University",essays:"Yes",initials:"UT",url:"https://www.u-tokyo.ac.jp/en/"},
-
-{name:"Kyoto University",city:"Kyoto",country:"Japan",field:"Engineering",sat:"1450+",ielts:"7.0+",gpa:"4.5+",tuition:"¥550k+",scholarship:"Available",aid:"Available",deadline:"Dec",application:"University",essays:"Yes",initials:"KU",url:"https://www.kyoto-u.ac.jp/en"},
-
-{name:"Osaka University",city:"Osaka",country:"Japan",field:"Engineering",sat:"1400+",ielts:"6.5+",gpa:"4.3+",tuition:"¥550k+",scholarship:"Available",aid:"Available",deadline:"Dec",application:"University",essays:"Yes",initials:"OU",url:"https://www.osaka-u.ac.jp/en"},
-
-{name:"Tohoku University",city:"Sendai",country:"Japan",field:"Engineering",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"¥550k+",scholarship:"Available",aid:"Available",deadline:"Dec",application:"University",essays:"Yes",initials:"TU",url:"https://www.tohoku.ac.jp/en/"},
-
-{name:"Tokyo Institute of Technology",city:"Tokyo",country:"Japan",field:"Engineering",sat:"1400+",ielts:"7.0+",gpa:"4.4+",tuition:"¥550k+",scholarship:"Available",aid:"Available",deadline:"Dec",application:"University",essays:"Yes",initials:"TIT",url:"https://www.isct.ac.jp/en"},
-
-/* SOUTH KOREA */
-
-{name:"KAIST",city:"Daejeon",country:"South Korea",field:"Engineering",sat:"1450+",ielts:"7.0+",gpa:"4.5+",tuition:"KRW 7m+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"University",essays:"Yes",initials:"KAIST",url:"https://www.kaist.ac.kr/en/"},
-
-{name:"Seoul National University",city:"Seoul",country:"South Korea",field:"Computer Science",sat:"1450+",ielts:"7.0+",gpa:"4.5+",tuition:"KRW 5m+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"University",essays:"Yes",initials:"SNU",url:"https://en.snu.ac.kr/"},
-
-{name:"POSTECH",city:"Pohang",country:"South Korea",field:"Engineering",sat:"1400+",ielts:"7.0+",gpa:"4.4+",tuition:"KRW 7m+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"University",essays:"Yes",initials:"POSTECH",url:"https://www.postech.ac.kr/eng/"},
-
-{name:"Yonsei University",city:"Seoul",country:"South Korea",field:"Computer Science",sat:"1350+",ielts:"6.5+",gpa:"4.3+",tuition:"KRW 7m+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"University",essays:"Yes",initials:"YU",url:"https://www.yonsei.ac.kr/en_sc/"},
-
-{name:"Korea University",city:"Seoul",country:"South Korea",field:"Computer Science",sat:"1350+",ielts:"6.5+",gpa:"4.3+",tuition:"KRW 7m+",scholarship:"Available",aid:"Available",deadline:"Jan",application:"University",essays:"Yes",initials:"KU",url:"https://www.korea.ac.kr/mbshome/mbs/en/index.do"},
-
-/* AUSTRALIA */
-
-{name:"University of Melbourne",city:"Melbourne",country:"Australia",field:"Computer Science",sat:"1400+",ielts:"7.0+",gpa:"4.3+",tuition:"AUD 50k+",scholarship:"Available",aid:"Limited",deadline:"Oct",application:"University",essays:"Sometimes",initials:"UM",url:"https://www.unimelb.edu.au/"},
-
-{name:"University of Sydney",city:"Sydney",country:"Australia",field:"Computer Science",sat:"1400+",ielts:"7.0+",gpa:"4.3+",tuition:"AUD 50k+",scholarship:"Available",aid:"Limited",deadline:"Oct",application:"University",essays:"Sometimes",initials:"US",url:"https://www.sydney.edu.au/"},
-
-{name:"Australian National University",city:"Canberra",country:"Australia",field:"Computer Science",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"AUD 45k+",scholarship:"Available",aid:"Limited",deadline:"Dec",application:"University",essays:"Sometimes",initials:"ANU",url:"https://www.anu.edu.au/"},
-
-{name:"UNSW Sydney",city:"Sydney",country:"Australia",field:"Engineering",sat:"1350+",ielts:"7.0+",gpa:"4.2+",tuition:"AUD 50k+",scholarship:"Available",aid:"Limited",deadline:"Oct",application:"University",essays:"Sometimes",initials:"UNSW",url:"https://www.unsw.edu.au/"},
-
-{name:"Monash University",city:"Melbourne",country:"Australia",field:"Computer Science",sat:"1300+",ielts:"6.5+",gpa:"4.1+",tuition:"AUD 45k+",scholarship:"Available",aid:"Limited",deadline:"Oct",application:"University",essays:"Sometimes",initials:"MU",url:"https://www.monash.edu/"},
-
-{name:"University of Queensland",city:"Brisbane",country:"Australia",field:"Engineering",sat:"1300+",ielts:"6.5+",gpa:"4.1+",tuition:"AUD 45k+",scholarship:"Available",aid:"Limited",deadline:"Oct",application:"University",essays:"Sometimes",initials:"UQ",url:"https://www.uq.edu.au/"},
-
-/* NEW ZEALAND */
-
-{name:"University of Auckland",city:"Auckland",country:"New Zealand",field:"Computer Science",sat:"1300+",ielts:"6.5+",gpa:"4.1+",tuition:"NZD 40k+",scholarship:"Available",aid:"Limited",deadline:"Oct",application:"University",essays:"Sometimes",initials:"UOA",url:"https://www.auckland.ac.nz/"},
-
-/* EUROPE EXTRA */
-
-{name:"University of Copenhagen",city:"Copenhagen",country:"Denmark",field:"Computer Science",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"€0-15k",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"University",essays:"Sometimes",initials:"UCPH",url:"https://www.ku.dk/english/"},
-
-{name:"KTH Royal Institute of Technology",city:"Stockholm",country:"Sweden",field:"Engineering",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"SEK 150k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"University",essays:"Sometimes",initials:"KTH",url:"https://www.kth.se/en"},
-
-{name:"Aalto University",city:"Espoo",country:"Finland",field:"Computer Science",sat:"1300+",ielts:"6.5+",gpa:"4.1+",tuition:"€15k+",scholarship:"Available",aid:"Limited",deadline:"Jan",application:"University",essays:"Sometimes",initials:"A",url:"https://www.aalto.fi/en"},
-
-{name:"Trinity College Dublin",city:"Dublin",country:"Ireland",field:"Computer Science",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"€25k+",scholarship:"Available",aid:"Limited",deadline:"Feb",application:"CAO/University",essays:"Sometimes",initials:"TCD",url:"https://www.tcd.ie/"},
-
-{name:"University of Zurich",city:"Zurich",country:"Switzerland",field:"Computer Science",sat:"1350+",ielts:"6.5+",gpa:"4.2+",tuition:"CHF 2k+",scholarship:"Available",aid:"Limited",deadline:"Apr",application:"University",essays:"Sometimes",initials:"UZH",url:"https://www.uzh.ch/en.html"}
+{
+id:1,name:"Massachusetts Institute of Technology",city:"Cambridge",country:"USA",
+field:"Computer Science",sat:1550,ielts:7.5,gpa:4.8,
+tuition:"$60k+",scholarship:"Need-based",aid:"Need-based aid",
+deadline:"Jan",application:"Common App / MIT",essays:"Yes",initials:"MIT",
+website:"https://www.mit.edu"
+},
+
+{
+id:2,name:"Stanford University",city:"Stanford",country:"USA",
+field:"Computer Science",sat:1550,ielts:7.5,gpa:4.8,
+tuition:"$60k+",scholarship:"Need-based",aid:"Need-based aid",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"SU",
+website:"https://www.stanford.edu"
+},
+
+{
+id:3,name:"Harvard University",city:"Cambridge",country:"USA",
+field:"Computer Science",sat:1550,ielts:7.5,gpa:4.8,
+tuition:"$60k+",scholarship:"Need-based",aid:"Need-based aid",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"HU",
+website:"https://www.harvard.edu"
+},
+
+{
+id:4,name:"Carnegie Mellon University",city:"Pittsburgh",country:"USA",
+field:"Computer Science",sat:1550,ielts:7.5,gpa:4.7,
+tuition:"$60k+",scholarship:"Merit / need",aid:"Available",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"CMU",
+website:"https://www.cmu.edu"
+},
+
+{
+id:5,name:"University of California Berkeley",city:"Berkeley",country:"USA",
+field:"Computer Science",sat:1500,ielts:7,gpa:4.6,
+tuition:"$45k+",scholarship:"Limited",aid:"Available",
+deadline:"Nov",application:"UC Application",essays:"Yes",initials:"UCB",
+website:"https://www.berkeley.edu"
+},
+
+{
+id:6,name:"University of California Los Angeles",city:"Los Angeles",country:"USA",
+field:"Computer Science",sat:1480,ielts:7,gpa:4.6,
+tuition:"$45k+",scholarship:"Limited",aid:"Available",
+deadline:"Nov",application:"UC Application",essays:"Yes",initials:"UCLA",
+website:"https://www.ucla.edu"
+},
+
+{
+id:7,name:"Georgia Institute of Technology",city:"Atlanta",country:"USA",
+field:"Engineering",sat:1480,ielts:7,gpa:4.5,
+tuition:"$35k+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"GT",
+website:"https://www.gatech.edu"
+},
+
+{
+id:8,name:"University of Michigan",city:"Ann Arbor",country:"USA",
+field:"Computer Science",sat:1480,ielts:7,gpa:4.5,
+tuition:"$55k+",scholarship:"Merit",aid:"Available",
+deadline:"Feb",application:"Common App",essays:"Yes",initials:"UM",
+website:"https://umich.edu"
+},
+
+{
+id:9,name:"University of Washington",city:"Seattle",country:"USA",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.4,
+tuition:"$40k+",scholarship:"Merit",aid:"Available",
+deadline:"Nov",application:"Common App",essays:"Yes",initials:"UW",
+website:"https://www.washington.edu"
+},
+
+{
+id:10,name:"University of Maryland",city:"College Park",country:"USA",
+field:"Computer Science",sat:1480,ielts:7,gpa:4.5,
+tuition:"$40k+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"UMD",
+website:"https://umd.edu"
+},
+
+{
+id:11,name:"Boston University",city:"Boston",country:"USA",
+field:"Computer Science",sat:1500,ielts:7,gpa:4.5,
+tuition:"$65k+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"BU",
+website:"https://www.bu.edu"
+},
+
+{
+id:12,name:"Northeastern University",city:"Boston",country:"USA",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.4,
+tuition:"$60k+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"NU",
+website:"https://www.northeastern.edu"
+},
+
+{
+id:13,name:"Duke University",city:"Durham",country:"USA",
+field:"Computer Science",sat:1500,ielts:7.5,gpa:4.7,
+tuition:"$65k+",scholarship:"Need-based",aid:"Available",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"DU",
+website:"https://duke.edu"
+},
+
+{
+id:14,name:"New York University",city:"New York",country:"USA",
+field:"Computer Science",sat:1500,ielts:7,gpa:4.5,
+tuition:"$60k+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"NYU",
+website:"https://www.nyu.edu"
+},
+
+{
+id:15,name:"University of Southern California",city:"Los Angeles",country:"USA",
+field:"Computer Science",sat:1480,ielts:7,gpa:4.5,
+tuition:"$65k+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"USC",
+website:"https://www.usc.edu"
+},
+
+{
+id:16,name:"Purdue University",city:"West Lafayette",country:"USA",
+field:"Engineering",sat:1450,ielts:7,gpa:4.4,
+tuition:"$30k+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"PU",
+website:"https://www.purdue.edu"
+},
+
+{
+id:17,name:"University of Illinois Urbana-Champaign",city:"Urbana",country:"USA",
+field:"Computer Science",sat:1500,ielts:7,gpa:4.5,
+tuition:"$40k+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"UIUC",
+website:"https://illinois.edu"
+},
+
+{
+id:18,name:"University of Texas at Austin",city:"Austin",country:"USA",
+field:"Computer Science",sat:1480,ielts:7,gpa:4.5,
+tuition:"$40k+",scholarship:"Merit",aid:"Available",
+deadline:"Dec",application:"Common App",essays:"Yes",initials:"UT",
+website:"https://www.utexas.edu"
+},
+
+{
+id:19,name:"University of Wisconsin-Madison",city:"Madison",country:"USA",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.4,
+tuition:"$40k+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"UW",
+website:"https://www.wisc.edu"
+},
+
+{
+id:20,name:"University of Pennsylvania",city:"Philadelphia",country:"USA",
+field:"Computer Science",sat:1550,ielts:7.5,gpa:4.8,
+tuition:"$65k+",scholarship:"Need-based",aid:"Need-based",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"UP",
+website:"https://www.upenn.edu"
+},
+
+{
+id:21,name:"Cornell University",city:"Ithaca",country:"USA",
+field:"Computer Science",sat:1500,ielts:7.5,gpa:4.7,
+tuition:"$65k+",scholarship:"Need-based",aid:"Need-based",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"CU",
+website:"https://www.cornell.edu"
+},
+
+{
+id:22,name:"Princeton University",city:"Princeton",country:"USA",
+field:"Computer Science",sat:1550,ielts:7.5,gpa:4.8,
+tuition:"$60k+",scholarship:"Need-based",aid:"Need-based",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"PU",
+website:"https://www.princeton.edu"
+},
+
+{
+id:23,name:"Columbia University",city:"New York",country:"USA",
+field:"Computer Science",sat:1530,ielts:7.5,gpa:4.7,
+tuition:"$65k+",scholarship:"Need-based",aid:"Need-based",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"CU",
+website:"https://www.columbia.edu"
+},
+
+{
+id:24,name:"Brown University",city:"Providence",country:"USA",
+field:"Computer Science",sat:1500,ielts:7.5,gpa:4.7,
+tuition:"$65k+",scholarship:"Need-based",aid:"Need-based",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"BU",
+website:"https://www.brown.edu"
+},
+
+{
+id:25,name:"Rice University",city:"Houston",country:"USA",
+field:"Computer Science",sat:1500,ielts:7,gpa:4.6,
+tuition:"$60k+",scholarship:"Need-based",aid:"Available",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"RU",
+website:"https://www.rice.edu"
+},
+
+{
+id:26,name:"University of Toronto",city:"Toronto",country:"Canada",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.5,
+tuition:"C$60k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Sometimes",initials:"UofT",
+website:"https://www.utoronto.ca"
+},
+
+{
+id:27,name:"University of Waterloo",city:"Waterloo",country:"Canada",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.5,
+tuition:"C$55k+",scholarship:"Merit",aid:"Limited",
+deadline:"Feb",application:"OUAC",essays:"Yes",initials:"UW",
+website:"https://uwaterloo.ca"
+},
+
+{
+id:28,name:"McGill University",city:"Montreal",country:"Canada",
+field:"Computer Science",sat:1400,ielts:6.5,gpa:4.4,
+tuition:"C$45k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Sometimes",initials:"MG",
+website:"https://www.mcgill.ca"
+},
+
+{
+id:29,name:"University of British Columbia",city:"Vancouver",country:"Canada",
+field:"Computer Science",sat:1400,ielts:7,gpa:4.4,
+tuition:"C$50k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Yes",initials:"UBC",
+website:"https://www.ubc.ca"
+},
+
+{
+id:30,name:"University of Alberta",city:"Edmonton",country:"Canada",
+field:"Computer Science",sat:1350,ielts:6.5,gpa:4.2,
+tuition:"C$35k+",scholarship:"Merit",aid:"Limited",
+deadline:"Mar",application:"University portal",essays:"Sometimes",initials:"UA",
+website:"https://www.ualberta.ca"
+},
+
+{
+id:31,name:"University of Edinburgh",city:"Edinburgh",country:"UK",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.5,
+tuition:"£35k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"UE",
+website:"https://www.ed.ac.uk"
+},
+
+{
+id:32,name:"University College London",city:"London",country:"UK",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.5,
+tuition:"£40k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"UCL",
+website:"https://www.ucl.ac.uk"
+},
+
+{
+id:33,name:"Imperial College London",city:"London",country:"UK",
+field:"Engineering",sat:1500,ielts:7,gpa:4.6,
+tuition:"£40k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"IC",
+website:"https://www.imperial.ac.uk"
+},
+
+{
+id:34,name:"University of Manchester",city:"Manchester",country:"UK",
+field:"Computer Science",sat:1400,ielts:6.5,gpa:4.3,
+tuition:"£30k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"UM",
+website:"https://www.manchester.ac.uk"
+},
+
+{
+id:35,name:"King's College London",city:"London",country:"UK",
+field:"Computer Science",sat:1400,ielts:7,gpa:4.4,
+tuition:"£35k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"KCL",
+website:"https://www.kcl.ac.uk"
+},
+
+{
+id:36,name:"University of Bristol",city:"Bristol",country:"UK",
+field:"Computer Science",sat:1400,ielts:6.5,gpa:4.3,
+tuition:"£30k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"UB",
+website:"https://www.bristol.ac.uk"
+},
+
+{
+id:37,name:"University of Warwick",city:"Coventry",country:"UK",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.4,
+tuition:"£30k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"UW",
+website:"https://warwick.ac.uk"
+},
+
+{
+id:38,name:"University of Glasgow",city:"Glasgow",country:"UK",
+field:"Computer Science",sat:1350,ielts:6.5,gpa:4.2,
+tuition:"£30k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"UG",
+website:"https://www.gla.ac.uk"
+},
+
+{
+id:39,name:"University of Birmingham",city:"Birmingham",country:"UK",
+field:"Computer Science",sat:1350,ielts:6.5,gpa:4.2,
+tuition:"£28k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"UB",
+website:"https://www.birmingham.ac.uk"
+},
+
+{
+id:40,name:"University of Southampton",city:"Southampton",country:"UK",
+field:"Computer Science",sat:1350,ielts:6.5,gpa:4.2,
+tuition:"£30k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"UCAS",essays:"Personal statement",initials:"US",
+website:"https://www.southampton.ac.uk"
+},
+
+{
+id:41,name:"University of Cambridge",city:"Cambridge",country:"UK",
+field:"Computer Science",sat:1550,ielts:7.5,gpa:4.8,
+tuition:"£40k+",scholarship:"College-based",aid:"Varies",
+deadline:"Oct",application:"UCAS",essays:"Yes",initials:"CAM",
+website:"https://www.cam.ac.uk"
+},
+
+{
+id:42,name:"University of Oxford",city:"Oxford",country:"UK",
+field:"Computer Science",sat:1550,ielts:7.5,gpa:4.8,
+tuition:"£40k+",scholarship:"College-based",aid:"Varies",
+deadline:"Oct",application:"UCAS",essays:"Yes",initials:"OX",
+website:"https://www.ox.ac.uk"
+},
+
+{
+id:43,name:"Tsinghua University",city:"Beijing",country:"China",
+field:"Engineering",sat:1500,ielts:7,gpa:4.6,
+tuition:"¥40k+",scholarship:"Government / merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"TH",
+website:"https://www.tsinghua.edu.cn"
+},
+
+{
+id:44,name:"Peking University",city:"Beijing",country:"China",
+field:"Computer Science",sat:1500,ielts:7,gpa:4.6,
+tuition:"¥35k+",scholarship:"Merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"PKU",
+website:"https://english.pku.edu.cn"
+},
+
+{
+id:45,name:"Fudan University",city:"Shanghai",country:"China",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.4,
+tuition:"¥30k+",scholarship:"Merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"FU",
+website:"https://www.fudan.edu.cn"
+},
+
+{
+id:46,name:"Shanghai Jiao Tong University",city:"Shanghai",country:"China",
+field:"Engineering",sat:1450,ielts:7,gpa:4.4,
+tuition:"¥30k+",scholarship:"Merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"SJTU",
+website:"https://en.sjtu.edu.cn"
+},
+
+{
+id:47,name:"Zhejiang University",city:"Hangzhou",country:"China",
+field:"Computer Science",sat:1400,ielts:6.5,gpa:4.3,
+tuition:"¥30k+",scholarship:"Merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"ZJU",
+website:"https://www.zju.edu.cn"
+},
+
+{
+id:48,name:"NYU Shanghai",city:"Shanghai",country:"China",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.5,
+tuition:"$60k+",scholarship:"Need / merit",aid:"Available",
+deadline:"Jan",application:"Common App",essays:"Yes",initials:"NYU",
+website:"https://shanghai.nyu.edu"
+},
+
+{
+id:49,name:"University of Hong Kong",city:"Hong Kong",country:"Hong Kong",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.5,
+tuition:"HK$180k+",scholarship:"Merit",aid:"Available",
+deadline:"Dec",application:"University portal",essays:"Yes",initials:"HKU",
+website:"https://www.hku.hk"
+},
+
+{
+id:50,name:"Hong Kong University of Science and Technology",city:"Hong Kong",country:"Hong Kong",
+field:"Engineering",sat:1450,ielts:6.5,gpa:4.4,
+tuition:"HK$150k+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"University portal",essays:"Yes",initials:"HKUST",
+website:"https://hkust.edu.hk"
+},
+
+{
+id:51,name:"Chinese University of Hong Kong",city:"Hong Kong",country:"Hong Kong",
+field:"Computer Science",sat:1400,ielts:6.5,gpa:4.3,
+tuition:"HK$145k+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"University portal",essays:"Yes",initials:"CUHK",
+website:"https://www.cuhk.edu.hk"
+},
+
+{
+id:52,name:"National University of Singapore",city:"Singapore",country:"Singapore",
+field:"Computer Science",sat:1500,ielts:7,gpa:4.6,
+tuition:"S$40k+",scholarship:"Merit",aid:"Available",
+deadline:"Feb",application:"University portal",essays:"Yes",initials:"NUS",
+website:"https://nus.edu.sg"
+},
+
+{
+id:53,name:"Nanyang Technological University",city:"Singapore",country:"Singapore",
+field:"Engineering",sat:1450,ielts:7,gpa:4.5,
+tuition:"S$35k+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"University portal",essays:"Yes",initials:"NTU",
+website:"https://www.ntu.edu.sg"
+},
+
+{
+id:54,name:"Singapore Management University",city:"Singapore",country:"Singapore",
+field:"Business",sat:1400,ielts:7,gpa:4.4,
+tuition:"S$45k+",scholarship:"Merit",aid:"Available",
+deadline:"Mar",application:"University portal",essays:"Yes",initials:"SMU",
+website:"https://smu.edu.sg"
+},
+
+{
+id:55,name:"University of Tokyo",city:"Tokyo",country:"Japan",
+field:"Engineering",sat:1450,ielts:7,gpa:4.5,
+tuition:"¥650k+",scholarship:"Government / merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"UT",
+website:"https://www.u-tokyo.ac.jp"
+},
+
+{
+id:56,name:"Kyoto University",city:"Kyoto",country:"Japan",
+field:"Engineering",sat:1450,ielts:7,gpa:4.5,
+tuition:"¥650k+",scholarship:"Government / merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"KU",
+website:"https://www.kyoto-u.ac.jp"
+},
+
+{
+id:57,name:"Tokyo Institute of Technology",city:"Tokyo",country:"Japan",
+field:"Engineering",sat:1450,ielts:6.5,gpa:4.4,
+tuition:"¥650k+",scholarship:"Merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"TIT",
+website:"https://www.isct.ac.jp"
+},
+
+{
+id:58,name:"Osaka University",city:"Osaka",country:"Japan",
+field:"Engineering",sat:1400,ielts:6.5,gpa:4.3,
+tuition:"¥650k+",scholarship:"Merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"OU",
+website:"https://www.osaka-u.ac.jp"
+},
+
+{
+id:59,name:"Tohoku University",city:"Sendai",country:"Japan",
+field:"Engineering",sat:1400,ielts:6.5,gpa:4.3,
+tuition:"¥650k+",scholarship:"Merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"TU",
+website:"https://www.tohoku.ac.jp"
+},
+
+{
+id:60,name:"KAIST",city:"Daejeon",country:"South Korea",
+field:"Engineering",sat:1450,ielts:7,gpa:4.5,
+tuition:"₩10m+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"University portal",essays:"Yes",initials:"KAIST",
+website:"https://www.kaist.ac.kr"
+},
+
+{
+id:61,name:"Seoul National University",city:"Seoul",country:"South Korea",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.5,
+tuition:"₩8m+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"University portal",essays:"Yes",initials:"SNU",
+website:"https://en.snu.ac.kr"
+},
+
+{
+id:62,name:"Yonsei University",city:"Seoul",country:"South Korea",
+field:"Computer Science",sat:1400,ielts:6.5,gpa:4.4,
+tuition:"₩8m+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"University portal",essays:"Yes",initials:"YU",
+website:"https://www.yonsei.ac.kr"
+},
+
+{
+id:63,name:"Korea University",city:"Seoul",country:"South Korea",
+field:"Computer Science",sat:1400,ielts:6.5,gpa:4.3,
+tuition:"₩8m+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"University portal",essays:"Yes",initials:"KU",
+website:"https://www.korea.edu"
+},
+
+{
+id:64,name:"POSTECH",city:"Pohang",country:"South Korea",
+field:"Engineering",sat:1450,ielts:7,gpa:4.5,
+tuition:"₩8m+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"University portal",essays:"Yes",initials:"POSTECH",
+website:"https://www.postech.ac.kr"
+},
+
+{
+id:65,name:"University of Melbourne",city:"Melbourne",country:"Australia",
+field:"Computer Science",sat:1400,ielts:7,gpa:4.4,
+tuition:"A$50k+",scholarship:"Merit",aid:"Limited",
+deadline:"Oct",application:"University portal",essays:"Sometimes",initials:"UM",
+website:"https://www.unimelb.edu.au"
+},
+
+{
+id:66,name:"University of Sydney",city:"Sydney",country:"Australia",
+field:"Computer Science",sat:1400,ielts:7,gpa:4.4,
+tuition:"A$50k+",scholarship:"Merit",aid:"Limited",
+deadline:"Sep",application:"University portal",essays:"Sometimes",initials:"US",
+website:"https://www.sydney.edu.au"
+},
+
+{
+id:67,name:"Australian National University",city:"Canberra",country:"Australia",
+field:"Computer Science",sat:1400,ielts:6.5,gpa:4.3,
+tuition:"A$45k+",scholarship:"Merit",aid:"Limited",
+deadline:"Dec",application:"University portal",essays:"Sometimes",initials:"ANU",
+website:"https://www.anu.edu.au"
+},
+
+{
+id:68,name:"University of New South Wales",city:"Sydney",country:"Australia",
+field:"Engineering",sat:1400,ielts:7,gpa:4.4,
+tuition:"A$50k+",scholarship:"Merit",aid:"Limited",
+deadline:"Sep",application:"University portal",essays:"Sometimes",initials:"UNSW",
+website:"https://www.unsw.edu.au"
+},
+
+{
+id:69,name:"Monash University",city:"Melbourne",country:"Australia",
+field:"Computer Science",sat:1350,ielts:6.5,gpa:4.2,
+tuition:"A$45k+",scholarship:"Merit",aid:"Limited",
+deadline:"Oct",application:"University portal",essays:"Sometimes",initials:"MU",
+website:"https://www.monash.edu"
+},
+
+{
+id:70,name:"University of Queensland",city:"Brisbane",country:"Australia",
+field:"Engineering",sat:1350,ielts:6.5,gpa:4.2,
+tuition:"A$45k+",scholarship:"Merit",aid:"Limited",
+deadline:"Oct",application:"University portal",essays:"Sometimes",initials:"UQ",
+website:"https://www.uq.edu.au"
+},
+
+{
+id:71,name:"ETH Zurich",city:"Zurich",country:"Switzerland",
+field:"Engineering",sat:1500,ielts:7,gpa:4.6,
+tuition:"CHF 1k+",scholarship:"Limited",aid:"Available",
+deadline:"Apr",application:"University portal",essays:"Varies",initials:"ETH",
+website:"https://ethz.ch"
+},
+
+{
+id:72,name:"EPFL",city:"Lausanne",country:"Switzerland",
+field:"Engineering",sat:1450,ielts:7,gpa:4.5,
+tuition:"CHF 1k+",scholarship:"Limited",aid:"Available",
+deadline:"Apr",application:"University portal",essays:"Varies",initials:"EPFL",
+website:"https://www.epfl.ch"
+},
+
+{
+id:73,name:"University of Zurich",city:"Zurich",country:"Switzerland",
+field:"Computer Science",sat:1350,ielts:6.5,gpa:4.2,
+tuition:"CHF 2k+",scholarship:"Limited",aid:"Available",
+deadline:"Apr",application:"University portal",essays:"Varies",initials:"UZH",
+website:"https://www.uzh.ch"
+},
+
+{
+id:74,name:"Technical University of Munich",city:"Munich",country:"Germany",
+field:"Engineering",sat:1400,ielts:6.5,gpa:4.4,
+tuition:"€5k+",scholarship:"Merit",aid:"Available",
+deadline:"Jul",application:"University portal",essays:"Varies",initials:"TUM",
+website:"https://www.tum.de"
+},
+
+{
+id:75,name:"RWTH Aachen University",city:"Aachen",country:"Germany",
+field:"Engineering",sat:1400,ielts:6.5,gpa:4.3,
+tuition:"€3k+",scholarship:"Limited",aid:"Available",
+deadline:"Jul",application:"University portal",essays:"Varies",initials:"RWTH",
+website:"https://www.rwth-aachen.de"
+},
+
+{
+id:76,name:"Heidelberg University",city:"Heidelberg",country:"Germany",
+field:"Computer Science",sat:1350,ielts:6.5,gpa:4.3,
+tuition:"€3k+",scholarship:"Limited",aid:"Available",
+deadline:"Jul",application:"University portal",essays:"Varies",initials:"HU",
+website:"https://www.uni-heidelberg.de"
+},
+
+{
+id:77,name:"TU Berlin",city:"Berlin",country:"Germany",
+field:"Engineering",sat:1350,ielts:6.5,gpa:4.2,
+tuition:"€2k+",scholarship:"Limited",aid:"Available",
+deadline:"Jul",application:"University portal",essays:"Varies",initials:"TUB",
+website:"https://www.tu.berlin"
+},
+
+{
+id:78,name:"University of Amsterdam",city:"Amsterdam",country:"Netherlands",
+field:"Computer Science",sat:1400,ielts:7,gpa:4.4,
+tuition:"€15k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Varies",initials:"UVA",
+website:"https://www.uva.nl"
+},
+
+{
+id:79,name:"Delft University of Technology",city:"Delft",country:"Netherlands",
+field:"Engineering",sat:1450,ielts:7,gpa:4.5,
+tuition:"€15k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Varies",initials:"TU",
+website:"https://www.tudelft.nl"
+},
+
+{
+id:80,name:"Eindhoven University of Technology",city:"Eindhoven",country:"Netherlands",
+field:"Engineering",sat:1350,ielts:6.5,gpa:4.3,
+tuition:"€15k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Varies",initials:"TUe",
+website:"https://www.tue.nl"
+},
+
+{
+id:81,name:"Leiden University",city:"Leiden",country:"Netherlands",
+field:"Data Science",sat:1350,ielts:7,gpa:4.3,
+tuition:"€15k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Varies",initials:"LU",
+website:"https://www.universiteitleiden.nl"
+},
+
+{
+id:82,name:"KU Leuven",city:"Leuven",country:"Belgium",
+field:"Engineering",sat:1350,ielts:6.5,gpa:4.2,
+tuition:"€7k+",scholarship:"Merit",aid:"Limited",
+deadline:"Apr",application:"University portal",essays:"Varies",initials:"KUL",
+website:"https://www.kuleuven.be"
+},
+
+{
+id:83,name:"University of Copenhagen",city:"Copenhagen",country:"Denmark",
+field:"Computer Science",sat:1350,ielts:6.5,gpa:4.2,
+tuition:"€15k+",scholarship:"Limited",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Varies",initials:"UCPH",
+website:"https://www.ku.dk"
+},
+
+{
+id:84,name:"Lund University",city:"Lund",country:"Sweden",
+field:"Engineering",sat:1350,ielts:6.5,gpa:4.2,
+tuition:"€15k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Varies",initials:"LU",
+website:"https://www.lunduniversity.lu.se"
+},
+
+{
+id:85,name:"KTH Royal Institute of Technology",city:"Stockholm",country:"Sweden",
+field:"Engineering",sat:1400,ielts:7,gpa:4.4,
+tuition:"€15k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Varies",initials:"KTH",
+website:"https://www.kth.se"
+},
+
+{
+id:86,name:"Aalto University",city:"Espoo",country:"Finland",
+field:"Engineering",sat:1350,ielts:6.5,gpa:4.3,
+tuition:"€15k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Varies",initials:"AU",
+website:"https://www.aalto.fi"
+},
+
+{
+id:87,name:"Trinity College Dublin",city:"Dublin",country:"Ireland",
+field:"Computer Science",sat:1400,ielts:7,gpa:4.4,
+tuition:"€25k+",scholarship:"Merit",aid:"Limited",
+deadline:"Feb",application:"CAO / portal",essays:"Varies",initials:"TCD",
+website:"https://www.tcd.ie"
+},
+
+{
+id:88,name:"University College Dublin",city:"Dublin",country:"Ireland",
+field:"Computer Science",sat:1350,ielts:6.5,gpa:4.2,
+tuition:"€25k+",scholarship:"Merit",aid:"Limited",
+deadline:"Feb",application:"CAO / portal",essays:"Varies",initials:"UCD",
+website:"https://www.ucd.ie"
+},
+
+{
+id:89,name:"University of Vienna",city:"Vienna",country:"Austria",
+field:"Computer Science",sat:1300,ielts:6.5,gpa:4.2,
+tuition:"€3k+",scholarship:"Limited",aid:"Available",
+deadline:"Jul",application:"University portal",essays:"Varies",initials:"UV",
+website:"https://www.univie.ac.at"
+},
+
+{
+id:90,name:"University of Warsaw",city:"Warsaw",country:"Poland",
+field:"Computer Science",sat:1300,ielts:6.5,gpa:4.1,
+tuition:"€5k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jul",application:"University portal",essays:"Varies",initials:"UW",
+website:"https://en.uw.edu.pl"
+},
+
+{
+id:91,name:"Charles University",city:"Prague",country:"Czech Republic",
+field:"Computer Science",sat:1300,ielts:6.5,gpa:4.1,
+tuition:"€8k+",scholarship:"Merit",aid:"Limited",
+deadline:"Mar",application:"University portal",essays:"Varies",initials:"CU",
+website:"https://cuni.cz"
+},
+
+{
+id:92,name:"University of Hong Kong Business School",city:"Hong Kong",country:"Hong Kong",
+field:"Business",sat:1400,ielts:7,gpa:4.4,
+tuition:"HK$180k+",scholarship:"Merit",aid:"Available",
+deadline:"Dec",application:"University portal",essays:"Yes",initials:"HK",
+website:"https://www.hku.hk"
+},
+
+{
+id:93,name:"Tsinghua University School of Economics",city:"Beijing",country:"China",
+field:"Business",sat:1450,ielts:7,gpa:4.5,
+tuition:"¥35k+",scholarship:"Merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"TH",
+website:"https://www.tsinghua.edu.cn"
+},
+
+{
+id:94,name:"Peking University Economics",city:"Beijing",country:"China",
+field:"Economics",sat:1450,ielts:7,gpa:4.5,
+tuition:"¥35k+",scholarship:"Merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"PKU",
+website:"https://english.pku.edu.cn"
+},
+
+{
+id:95,name:"University of British Columbia Engineering",city:"Vancouver",country:"Canada",
+field:"Engineering",sat:1400,ielts:7,gpa:4.4,
+tuition:"C$50k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Yes",initials:"UBC",
+website:"https://www.ubc.ca"
+},
+
+{
+id:96,name:"McMaster University",city:"Hamilton",country:"Canada",
+field:"Engineering",sat:1350,ielts:6.5,gpa:4.3,
+tuition:"C$40k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"OUAC",essays:"Sometimes",initials:"MC",
+website:"https://www.mcmaster.ca"
+},
+
+{
+id:97,name:"University of Montreal",city:"Montreal",country:"Canada",
+field:"Computer Science",sat:1300,ielts:6.5,gpa:4.2,
+tuition:"C$30k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Sometimes",initials:"UM",
+website:"https://umontreal.ca"
+},
+
+{
+id:98,name:"University of Ottawa",city:"Ottawa",country:"Canada",
+field:"Computer Science",sat:1300,ielts:6.5,gpa:4.2,
+tuition:"C$35k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"OUAC",essays:"Sometimes",initials:"UO",
+website:"https://www.uottawa.ca"
+},
+
+{
+id:99,name:"Simon Fraser University",city:"Burnaby",country:"Canada",
+field:"Computer Science",sat:1300,ielts:6.5,gpa:4.1,
+tuition:"C$30k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Sometimes",initials:"SFU",
+website:"https://www.sfu.ca"
+},
+
+{
+id:100,name:"University of Calgary",city:"Calgary",country:"Canada",
+field:"Engineering",sat:1300,ielts:6.5,gpa:4.1,
+tuition:"C$30k+",scholarship:"Merit",aid:"Limited",
+deadline:"Mar",application:"University portal",essays:"Sometimes",initials:"UC",
+website:"https://www.ucalgary.ca"
+},
+
+{
+id:101,name:"Monash University Data Science",city:"Melbourne",country:"Australia",
+field:"Data Science",sat:1350,ielts:7,gpa:4.3,
+tuition:"A$45k+",scholarship:"Merit",aid:"Limited",
+deadline:"Oct",application:"University portal",essays:"Sometimes",initials:"MU",
+website:"https://www.monash.edu"
+},
+
+{
+id:102,name:"University of Sydney Business",city:"Sydney",country:"Australia",
+field:"Business",sat:1350,ielts:7,gpa:4.3,
+tuition:"A$50k+",scholarship:"Merit",aid:"Limited",
+deadline:"Sep",application:"University portal",essays:"Sometimes",initials:"US",
+website:"https://www.sydney.edu.au"
+},
+
+{
+id:103,name:"University of Queensland Data Science",city:"Brisbane",country:"Australia",
+field:"Data Science",sat:1350,ielts:7,gpa:4.2,
+tuition:"A$45k+",scholarship:"Merit",aid:"Limited",
+deadline:"Oct",application:"University portal",essays:"Sometimes",initials:"UQ",
+website:"https://www.uq.edu.au"
+},
+
+{
+id:104,name:"University of Tokyo Computer Science",city:"Tokyo",country:"Japan",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.5,
+tuition:"¥650k+",scholarship:"Government / merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"UT",
+website:"https://www.u-tokyo.ac.jp"
+},
+
+{
+id:105,name:"Kyoto University Computer Science",city:"Kyoto",country:"Japan",
+field:"Computer Science",sat:1400,ielts:7,gpa:4.4,
+tuition:"¥650k+",scholarship:"Government / merit",aid:"Varies",
+deadline:"Varies",application:"University portal",essays:"Yes",initials:"KU",
+website:"https://www.kyoto-u.ac.jp"
+},
+
+{
+id:106,name:"KAIST Computer Science",city:"Daejeon",country:"South Korea",
+field:"Computer Science",sat:1450,ielts:7,gpa:4.5,
+tuition:"₩10m+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"University portal",essays:"Yes",initials:"KAIST",
+website:"https://www.kaist.ac.kr"
+},
+
+{
+id:107,name:"POSTECH Computer Science",city:"Pohang",country:"South Korea",
+field:"Computer Science",sat:1400,ielts:7,gpa:4.4,
+tuition:"₩8m+",scholarship:"Merit",aid:"Available",
+deadline:"Jan",application:"University portal",essays:"Yes",initials:"POSTECH",
+website:"https://www.postech.ac.kr"
+},
+
+{
+id:108,name:"Technical University of Munich Computer Science",city:"Munich",country:"Germany",
+field:"Computer Science",sat:1400,ielts:6.5,gpa:4.3,
+tuition:"€5k+",scholarship:"Merit",aid:"Available",
+deadline:"Jul",application:"University portal",essays:"Varies",initials:"TUM",
+website:"https://www.tum.de"
+},
+
+{
+id:109,name:"Delft University of Technology Computer Science",city:"Delft",country:"Netherlands",
+field:"Computer Science",sat:1400,ielts:7,gpa:4.4,
+tuition:"€15k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Varies",initials:"TU",
+website:"https://www.tudelft.nl"
+},
+
+{
+id:110,name:"Aalto University Computer Science",city:"Espoo",country:"Finland",
+field:"Computer Science",sat:1350,ielts:6.5,gpa:4.3,
+tuition:"€15k+",scholarship:"Merit",aid:"Limited",
+deadline:"Jan",application:"University portal",essays:"Varies",initials:"AU",
+website:"https://www.aalto.fi"
+}
 
 ];
 
-/* =========================
-   HELPERS
-========================= */
 
-function saveLocal(){
-    localStorage.setItem("unipathProfile4",JSON.stringify(profile));
-    localStorage.setItem("unipathSaved4",JSON.stringify(saved));
-    localStorage.setItem("unipathCompare4",JSON.stringify(compare));
+/* ---------- STATE ---------- */
+
+let saved = JSON.parse(localStorage.getItem("unipathSaved") || "[]");
+
+let profile = JSON.parse(
+    localStorage.getItem("unipathProfile") ||
+    JSON.stringify({
+        name:"Nurasyl",
+        grade:9,
+        specialty:"Computer Science",
+        sat:1500,
+        ielts:7,
+        gpa:4.5,
+        portfolio:"Strong",
+        destination:"USA"
+    })
+);
+
+let currentUniversity = null;
+
+const universityImages = {};
+
+
+/* ---------- HELPERS ---------- */
+
+function escapeHTML(value){
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 }
 
-function initials(name){
-    return name
-        .split(" ")
-        .map(x=>x[0])
-        .slice(0,3)
-        .join("")
-        .toUpperCase();
+function getUniversity(id){
+    return universities.find(u => u.id === Number(id));
 }
 
-function getSaved(u){
-    return saved.includes(u.name);
+function isSaved(id){
+    return saved.includes(Number(id));
 }
 
-function getCompare(u){
-    return compare.includes(u.name);
-}
 
-function parsePlus(value){
-    return parseFloat(value.replace("+",""));
-}
-
-/* =========================
-   MATCH
-========================= */
+/* ---------- MATCH ---------- */
 
 function calculateMatch(u){
 
-    let score=0;
+    let score = 0;
 
-    const satReq=parsePlus(u.sat);
-    const ieltsReq=parsePlus(u.ielts);
-    const gpaReq=parsePlus(u.gpa);
+    const sat = Number(profile.sat);
+    const ielts = Number(profile.ielts);
+    const gpa = Number(profile.gpa);
 
-    if(profile.sat >= satReq) score+=30;
-    else if(profile.sat >= satReq-50) score+=23;
-    else if(profile.sat >= satReq-100) score+=15;
-    else score+=7;
+    /* SAT */
 
-    if(profile.ielts >= ieltsReq) score+=20;
-    else if(profile.ielts >= ieltsReq-.5) score+=15;
-    else if(profile.ielts >= ieltsReq-1) score+=8;
+    if(sat >= u.sat) score += 25;
+    else if(sat >= u.sat - 50) score += 20;
+    else if(sat >= u.sat - 100) score += 14;
+    else score += 7;
 
-    if(profile.gpa >= gpaReq) score+=20;
-    else if(profile.gpa >= gpaReq-.3) score+=15;
-    else score+=7;
+    /* IELTS */
 
-    if(
-        profile.specialty === u.field ||
-        (profile.specialty==="Computer Science" && u.field==="Engineering")
+    if(ielts >= u.ielts) score += 20;
+    else if(ielts >= u.ielts - .5) score += 15;
+    else score += 8;
+
+    /* GPA */
+
+    if(gpa >= u.gpa) score += 20;
+    else if(gpa >= u.gpa - .2) score += 16;
+    else if(gpa >= u.gpa - .5) score += 11;
+    else score += 6;
+
+    /* SPECIALTY */
+
+    if(u.field === profile.specialty){
+        score += 20;
+    }else if(
+        profile.specialty === "Computer Science" &&
+        (u.field === "Data Science" || u.field === "Engineering")
     ){
-        score+=20;
+        score += 14;
     }else{
-        score+=9;
+        score += 7;
     }
 
-    if(u.country==="USA"){
-        score+=10;
+    /* DESTINATION */
+
+    if(
+        profile.destination === u.country ||
+        (profile.destination === "Europe" &&
+        ["Germany","Netherlands","Switzerland","Belgium","Denmark","Sweden","Finland","Ireland","Austria","Poland","Czech Republic"].includes(u.country))
+    ){
+        score += 15;
     }else{
-        score+=7;
+        score += 8;
     }
 
     return Math.min(100,Math.round(score));
 }
 
-/* =========================
-   IMAGE API
-========================= */
 
-const universityImages={};
+/* ---------- PROFILE STRENGTH ---------- */
 
-async function loadUniversityImages(){
+function calculateStrength(){
 
-    const requests=universities.map(async u=>{
+    let academic = Math.min(100,(Number(profile.gpa)/5)*100);
 
-        try{
-
-            const query=encodeURIComponent(
-                u.name+" university campus"
-            );
-
-            const url=
-                "https://en.wikipedia.org/w/api.php"+
-                "?action=query"+
-                "&generator=search"+
-                "&gsrsearch="+query+
-                "&gsrnamespace=0"+
-                "&gsrlimit=3"+
-                "&prop=pageimages"+
-                "&piprop=thumbnail"+
-                "&pithumbsize=900"+
-                "&format=json"+
-                "&origin=*";
-
-            const response=await fetch(url);
-
-            const data=await response.json();
-
-            const pages=data.query?.pages;
-
-            if(!pages) return;
-
-            const page=Object.values(pages).find(
-                p=>p.thumbnail?.source
-            );
-
-            if(page){
-                universityImages[u.name]=
-                    page.thumbnail.source;
-            }
-
-        }catch(error){
-
-            console.log(
-                "Image unavailable:",
-                u.name
-            );
-
-        }
-
-    });
-
-    await Promise.all(requests);
-
-    renderOverview();
-    renderUniversities();
-    renderSaved();
-}
-
-/* =========================
-   CARD
-========================= */
-
-function createCard(u){
-
-    const match=calculateMatch(u);
-
-    const image=universityImages[u.name];
-
-    const imageHTML=image
-        ?
-        `<img
-            class="uniImage"
-            src="${image}"
-            alt="${u.name} campus"
-            loading="lazy"
-        >`
-        :
-        `<div class="uniFallback">
-            ${u.initials || initials(u.name)}
-        </div>`;
-
-    const savedClass=getSaved(u) ? "saved" : "";
-
-    return `
-
-    <article class="uniCard">
-
-        <div class="uniCover">
-
-            ${imageHTML}
-
-            <button
-                class="uniSave ${savedClass}"
-                onclick="event.stopPropagation();toggleSave('${escapeQuote(u.name)}')">
-                ${getSaved(u) ? "♥" : "♡"}
-            </button>
-
-            <div class="matchBadge">
-                ${match}% match
-            </div>
-
-        </div>
-
-        <div class="uniBody">
-
-            <h3>${escapeHTML(u.name)}</h3>
-
-            <div class="uniLocation">
-                ${escapeHTML(u.city)} · ${escapeHTML(u.country)}
-            </div>
-
-            <div class="tags">
-                <span class="tag">${escapeHTML(u.field)}</span>
-                <span class="tag">SAT ${u.sat}</span>
-                <span class="tag">IELTS ${u.ielts}</span>
-            </div>
-
-            <div class="uniFooter">
-
-                <span>
-                    ${u.country==="USA" ? "United States" : u.country}
-                </span>
-
-                <button
-                    class="btn btnOutline"
-                    onclick="openUniversity('${escapeQuote(u.name)}')">
-                    View profile
-                </button>
-
-            </div>
-
-        </div>
-
-    </article>
-    `;
-}
-
-function escapeHTML(text){
-
-    return String(text)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;");
-
-}
-
-function escapeQuote(text){
-    return String(text).replaceAll("'","\\'");
-}
-
-/* =========================
-   OVERVIEW
-========================= */
-
-function renderOverview(){
-
-    const grid=document.getElementById("overviewGrid");
-
-    if(!grid) return;
-
-    const sorted=[...universities]
-        .sort((a,b)=>calculateMatch(b)-calculateMatch(a))
-        .slice(0,6);
-
-    grid.innerHTML=
-        sorted.map(createCard).join("");
-
-    document.getElementById("statUniversities")
-        .textContent=universities.length+"+";
-
-    document.getElementById("statSpecialty")
-        .textContent=profile.specialty==="Computer Science"
-        ?"CS"
-        :profile.specialty;
-
-    document.getElementById("statSAT")
-        .textContent=profile.sat;
-
-    document.getElementById("statStrength")
-        .textContent=calculateProfileStrength()+"%";
-}
-
-/* =========================
-   UNIVERSITIES
-========================= */
-
-function populateCountries(){
-
-    const select=document.getElementById("countryFilter");
-
-    const countries=[
-        ...new Set(universities.map(u=>u.country))
-    ].sort();
-
-    select.innerHTML=
-        `<option value="">All countries</option>`+
-        countries.map(
-            c=>`<option>${escapeHTML(c)}</option>`
-        ).join("");
-}
-
-function renderUniversities(){
-
-    const grid=document.getElementById("universitiesGrid");
-
-    if(!grid) return;
-
-    const search=
-        document.getElementById("uniSearch")
-        ?.value
-        .toLowerCase()
-        .trim() || "";
-
-    const country=
-        document.getElementById("countryFilter")
-        ?.value || "";
-
-    const field=
-        document.getElementById("fieldFilter")
-        ?.value || "";
-
-    const sort=
-        document.getElementById("sortFilter")
-        ?.value || "match";
-
-    let list=universities.filter(u=>{
-
-        const matchesSearch=
-            u.name.toLowerCase().includes(search) ||
-            u.city.toLowerCase().includes(search) ||
-            u.country.toLowerCase().includes(search);
-
-        const matchesCountry=
-            !country || u.country===country;
-
-        const matchesField=
-            !field || u.field===field;
-
-        return matchesSearch &&
-               matchesCountry &&
-               matchesField;
-
-    });
-
-    if(sort==="match"){
-        list.sort(
-            (a,b)=>calculateMatch(b)-calculateMatch(a)
-        );
-    }
-
-    if(sort==="name"){
-        list.sort((a,b)=>a.name.localeCompare(b.name));
-    }
-
-    if(sort==="sat"){
-        list.sort(
-            (a,b)=>parsePlus(a.sat)-parsePlus(b.sat)
-        );
-    }
-
-    document.getElementById("uniCount")
-        .textContent=
-        list.length+" universities found";
-
-    grid.innerHTML=
-        list.length
-        ?list.map(createCard).join("")
-        :`<div class="empty">No universities found.</div>`;
-}
-
-/* =========================
-   SAVE
-========================= */
-
-function toggleSave(name){
-
-    if(saved.includes(name)){
-        saved=saved.filter(x=>x!==name);
-    }else{
-        saved.push(name);
-    }
-
-    saveLocal();
-
-    renderOverview();
-    renderUniversities();
-    renderSaved();
-    renderCompare();
-}
-
-function renderSaved(){
-
-    const grid=document.getElementById("savedGrid");
-
-    if(!grid) return;
-
-    const list=universities.filter(
-        u=>saved.includes(u.name)
-    );
-
-    grid.innerHTML=
-        list.length
-        ?list.map(createCard).join("")
-        :`
-        <div class="empty">
-            <h3 style="margin-bottom:7px">
-                Nothing saved yet
-            </h3>
-            <p>
-                Open Universities and save the ones you like.
-            </p>
-        </div>
-        `;
-}
-
-/* =========================
-   COMPARE
-========================= */
-
-function addCompare(name){
-
-    if(compare.includes(name)){
-        compare=compare.filter(x=>x!==name);
-    }else{
-
-        if(compare.length>=5){
-
-            alert("You can compare up to 5 universities.");
-
-            return;
-        }
-
-        compare.push(name);
-    }
-
-    saveLocal();
-
-    renderCompare();
-}
-
-function renderCompare(){
-
-    const area=document.getElementById("compareArea");
-
-    if(!area) return;
-
-    const list=universities.filter(
-        u=>compare.includes(u.name)
-    );
-
-    if(!list.length){
-
-        area.innerHTML=`
-        <div class="empty">
-            <h3 style="margin-bottom:7px">
-                Add universities to compare
-            </h3>
-
-            <p>
-                You can compare up to five universities.
-            </p>
-        </div>
-        `;
-
-        return;
-    }
-
-    let html=`
-    <div class="compareTable">
-
-    <table>
-
-        <tr>
-            <th>University</th>
-            ${list.map(u=>`<th>${escapeHTML(u.name)}</th>`).join("")}
-        </tr>
-
-        <tr>
-            <td>Match</td>
-            ${list.map(u=>`<td><strong>${calculateMatch(u)}%</strong></td>`).join("")}
-        </tr>
-
-        <tr>
-            <td>Country</td>
-            ${list.map(u=>`<td>${escapeHTML(u.country)}</td>`).join("")}
-        </tr>
-
-        <tr>
-            <td>Field</td>
-            ${list.map(u=>`<td>${escapeHTML(u.field)}</td>`).join("")}
-        </tr>
-
-        <tr>
-            <td>SAT</td>
-            ${list.map(u=>`<td>${u.sat}</td>`).join("")}
-        </tr>
-
-        <tr>
-            <td>IELTS</td>
-            ${list.map(u=>`<td>${u.ielts}</td>`).join("")}
-        </tr>
-
-        <tr>
-            <td>GPA</td>
-            ${list.map(u=>`<td>${u.gpa}</td>`).join("")}
-        </tr>
-
-        <tr>
-            <td>Tuition</td>
-            ${list.map(u=>`<td>${u.tuition}</td>`).join("")}
-        </tr>
-
-        <tr>
-            <td>Scholarship</td>
-            ${list.map(u=>`<td>${u.scholarship}</td>`).join("")}
-        </tr>
-
-    </table>
-
-    </div>
-    `;
-
-    area.innerHTML=html;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-function openUniversity(name){
-
-    const u=universities.find(
-        x=>x.name===name
-    );
-
-    if(!u) return;
-
-    currentUniversity=u;
-
-    const image=universityImages[u.name];
-
-    document.getElementById("modalImage").src=
-        image || "";
-
-    document.getElementById("modalName")
-        .textContent=u.name;
-
-    document.getElementById("modalLocation")
-        .textContent=
-        `${u.city} · ${u.country} · ${u.field}`;
-
-    document.getElementById("modalMatch")
-        .textContent=
-        calculateMatch(u)+"% match";
-
-    document.getElementById("modalSAT")
-        .textContent=u.sat;
-
-    document.getElementById("modalIELTS")
-        .textContent=u.ielts;
-
-    document.getElementById("modalGPA")
-        .textContent=u.gpa;
-
-    document.getElementById("modalPortfolio")
-        .textContent="Recommended";
-
-    document.getElementById("modalTuition")
-        .textContent=u.tuition;
-
-    document.getElementById("modalScholarship")
-        .textContent=u.scholarship;
-
-    document.getElementById("modalAid")
-        .textContent=u.aid;
-
-    document.getElementById("modalDeadline")
-        .textContent=u.deadline;
-
-    document.getElementById("modalApplication")
-        .textContent=u.application;
-
-    document.getElementById("modalEssays")
-        .textContent=u.essays;
-
-    document.getElementById("checkSAT")
-        .textContent=
-        profile.sat>=parsePlus(u.sat)
-        ?"✓ On target"
-        :"Needs improvement";
-
-    document.getElementById("checkSAT")
-        .className=
-        profile.sat>=parsePlus(u.sat)
-        ?"good"
-        :"warn";
-
-    document.getElementById("checkIELTS")
-        .textContent=
-        profile.ielts>=parsePlus(u.ielts)
-        ?"✓ On target"
-        :"Needs improvement";
-
-    document.getElementById("checkIELTS")
-        .className=
-        profile.ielts>=parsePlus(u.ielts)
-        ?"good"
-        :"warn";
-
-    document.getElementById("checkGPA")
-        .textContent=
-        profile.gpa>=parsePlus(u.gpa)
-        ?"✓ On target"
-        :"Needs improvement";
-
-    document.getElementById("checkGPA")
-        .className=
-        profile.gpa>=parsePlus(u.gpa)
-        ?"good"
-        :"warn";
-
-    document.getElementById("modal")
-        .classList.add("open");
-}
-
-function closeModal(){
-
-    document.getElementById("modal")
-        .classList.remove("open");
-
-}
-
-function saveCurrentUniversity(){
-
-    if(!currentUniversity) return;
-
-    toggleSave(currentUniversity.name);
-}
-
-function addCurrentCompare(){
-
-    if(!currentUniversity) return;
-
-    addCompare(currentUniversity.name);
-
-    alert(
-        compare.includes(currentUniversity.name)
-        ?"Added to comparison."
-        :"Removed from comparison."
-    );
-}
-
-function openOfficialWebsite(){
-
-    if(!currentUniversity) return;
-
-    window.open(
-        currentUniversity.url,
-        "_blank"
-    );
-}
-
-/* =========================
-   PROFILE
-========================= */
-
-function saveProfile(){
-
-    profile.name=
-        document.getElementById("profileName").value
-        ||"Student";
-
-    profile.grade=
-        Number(document.getElementById("profileGrade").value);
-
-    profile.specialty=
-        document.getElementById("profileSpecialty").value;
-
-    profile.sat=
-        Number(document.getElementById("profileSAT").value);
-
-    profile.ielts=
-        Number(document.getElementById("profileIELTS").value);
-
-    profile.gpa=
-        Number(document.getElementById("profileGPA").value);
-
-    saveLocal();
-
-    updateProfileUI();
-
-    renderOverview();
-
-    renderUniversities();
-
-    renderSaved();
-
-    alert("Profile saved.");
-}
-
-function loadProfileForm(){
-
-    document.getElementById("profileName").value=
-        profile.name;
-
-    document.getElementById("profileGrade").value=
-        profile.grade;
-
-    document.getElementById("profileSpecialty").value=
-        profile.specialty;
-
-    document.getElementById("profileSAT").value=
-        profile.sat;
-
-    document.getElementById("profileIELTS").value=
-        profile.ielts;
-
-    document.getElementById("profileGPA").value=
-        profile.gpa;
-}
-
-function calculateProfileStrength(){
-
-    let academic=
-        Math.min(
-            100,
-            Math.max(
-                0,
-                Math.round(
-                    ((profile.gpa-3)/1.8)*100
-                )
-            )
-        );
-
-    let english=
-        Math.min(
-            100,
-            Math.max(
-                0,
-                Math.round(
-                    ((profile.ielts-5)/3)*100
-                )
-            )
-        );
-
-    let testing=
-        Math.min(
-            100,
-            Math.max(
-                0,
-                Math.round(
-                    ((profile.sat-1000)/600)*100
-                )
-            )
-        );
-
-    let portfolio=55;
-
-    return Math.round(
-        academic*.3+
-        english*.2+
-        testing*.3+
-        portfolio*.2
-    );
-}
-
-function updateProfileUI(){
-
-    document.getElementById("sideName")
-        .textContent=profile.name;
-
-    document.getElementById("topName")
-        .textContent=profile.name;
-
-    const letter=
-        profile.name.charAt(0).toUpperCase();
-
-    document.getElementById("sideAvatar")
-        .textContent=letter;
-
-    document.getElementById("topAvatar")
-        .textContent=letter;
-
-    const academic=Math.min(
+    let english = Math.min(
         100,
-        Math.max(
-            0,
-            Math.round(((profile.gpa-3)/1.8)*100)
-        )
+        (Number(profile.ielts)/8)*100
     );
 
-    const english=Math.min(
+    let testing = Math.min(
         100,
-        Math.max(
-            0,
-            Math.round(((profile.ielts-5)/3)*100)
-        )
+        (Number(profile.sat)/1600)*100
     );
 
-    const testing=Math.min(
-        100,
-        Math.max(
-            0,
-            Math.round(((profile.sat-1000)/600)*100)
-        )
-    );
+    let portfolioMap = {
+        "Developing":35,
+        "Good":60,
+        "Strong":80,
+        "Excellent":100
+    };
 
-    const portfolio=55;
+    let portfolio = portfolioMap[profile.portfolio] || 50;
 
-    setBar(
-        "academicsBar",
-        "academicsValue",
-        academic
-    );
-
-    setBar(
-        "englishBar",
-        "englishValue",
-        english
-    );
-
-    setBar(
-        "testingBar",
-        "testingValue",
-        testing
-    );
-
-    setBar(
-        "portfolioBar",
-        "portfolioValue",
+    return {
+        academic:Math.round(academic),
+        english:Math.round(english),
+        testing:Math.round(testing),
         portfolio
-    );
-
-    document.getElementById("profileAdvice")
-        .textContent=
-        profile.sat>=1500
-        ?"Your testing target is strong. Keep building English and a meaningful CS portfolio."
-        :"Focus on SAT improvement while building projects and maintaining strong school grades.";
-
+    };
 }
 
-function setBar(bar,value,number){
 
-    document.getElementById(bar)
-        .style.width=number+"%";
+/* ---------- NAVIGATION ---------- */
 
-    document.getElementById(value)
-        .textContent=number+"%";
-}
+function showPage(page,element){
 
-/* =========================
-   NAVIGATION
-========================= */
-
-function showPage(page,button){
-
-    const pages=[
-        "overview",
-        "universities",
-        "ai",
-        "saved",
-        "compare",
-        "requirements",
-        "roadmap",
-        "profile"
-    ];
-
-    pages.forEach(p=>{
-
-        const element=
-            document.getElementById("page-"+p);
-
-        if(element){
-            element.style.display=
-                p===page ? "block":"none";
-        }
-
+    document.querySelectorAll(".page").forEach(p=>{
+        p.classList.remove("active");
     });
 
-    document.querySelectorAll(".nav button")
-        .forEach(b=>b.classList.remove("active"));
+    document.getElementById("page-"+page).classList.add("active");
 
-    if(button){
-        button.classList.add("active");
+    document.querySelectorAll(".nav-item").forEach(n=>{
+        n.classList.remove("active");
+    });
+
+    if(element){
+        element.classList.add("active");
     }else{
+        const nav = [...document.querySelectorAll(".nav-item")]
+            .find(n=>n.textContent.toLowerCase().includes(page.toLowerCase()));
 
-        const target=
-            [...document.querySelectorAll(".nav button")]
-            .find(b=>
-                b.textContent
-                .toLowerCase()
-                .includes(page)
-            );
-
-        if(target){
-            target.classList.add("active");
-        }
+        if(nav) nav.classList.add("active");
     }
 
-    if(page==="universities"){
-        renderUniversities();
-    }
+    renderPage(page);
 
-    if(page==="saved"){
-        renderSaved();
-    }
-
-    if(page==="compare"){
-        renderCompare();
-    }
-
-    if(page==="profile"){
-        loadProfileForm();
-        updateProfileUI();
-    }
-
-    document.getElementById("sidebar")
-        .classList.remove("mobileOpen");
+    document.getElementById("sidebar").classList.remove("open");
 
     window.scrollTo({
         top:0,
@@ -2939,136 +3063,840 @@ function showPage(page,button){
     });
 }
 
-function toggleMobileMenu(){
-
-    document.getElementById("sidebar")
-        .classList.toggle("mobileOpen");
-
+function showPageById(page){
+    showPage(page,null);
 }
 
-/* =========================
-   GLOBAL SEARCH
-========================= */
+function renderPage(page){
 
-function globalSearch(event){
+    if(page==="overview") renderOverview();
+    if(page==="universities") renderUniversities();
+    if(page==="saved") renderSaved();
+    if(page==="compare") renderCompare();
+    if(page==="tracker") renderTracker();
+    if(page==="profile") renderProfile();
+}
 
-    if(event.key!=="Enter") return;
 
-    const value=
-        document.getElementById("globalSearch")
-        .value
-        .trim();
+/* ---------- UNIVERSITY CARD ---------- */
 
-    showPage("universities");
+function createCard(u){
 
-    document.getElementById("uniSearch")
-        .value=value;
+    const match = calculateMatch(u);
+    const image = universityImages[u.id];
 
+    return `
+    <div class="card uni-card">
+
+        <div class="uni-cover">
+
+            ${
+                image
+                ?
+                `<img
+                    class="uni-image"
+                    src="${image}"
+                    alt="${escapeHTML(u.name)} campus"
+                    loading="lazy"
+                    onerror="this.style.display='none'"
+                >`
+                :
+                `<div class="uni-monogram">${escapeHTML(u.initials)}</div>`
+            }
+
+            <button
+                class="save-btn ${isSaved(u.id) ? "saved":""}"
+                onclick="event.stopPropagation();toggleSave(${u.id})"
+                title="Save"
+            >
+                ${isSaved(u.id) ? "♥":"♡"}
+            </button>
+
+        </div>
+
+        <div class="uni-body">
+
+            <div class="uni-top">
+
+                <div>
+                    <div class="uni-name">
+                        ${escapeHTML(u.name)}
+                    </div>
+
+                    <div class="uni-location">
+                        ${escapeHTML(u.city)}, ${escapeHTML(u.country)}
+                    </div>
+                </div>
+
+                <div class="match">
+                    ${match}%
+                </div>
+
+            </div>
+
+            <div class="uni-tags">
+                <span class="tag">${escapeHTML(u.field)}</span>
+                <span class="tag">${escapeHTML(u.country)}</span>
+            </div>
+
+            <div class="uni-footer">
+
+                <div class="uni-price">
+                    SAT ${u.sat}+
+                </div>
+
+                <div class="uni-actions">
+                    <button
+                        class="btn small"
+                        onclick="openModal(${u.id})"
+                    >
+                        View
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    `;
+}
+
+
+/* ---------- OVERVIEW ---------- */
+
+function renderOverview(){
+
+    const grid = document.getElementById("overviewGrid");
+
+    const sorted = [...universities]
+        .sort((a,b)=>calculateMatch(b)-calculateMatch(a))
+        .slice(0,6);
+
+    grid.innerHTML = sorted.map(createCard).join("");
+
+    document.getElementById("heroMatch").textContent =
+        calculateOverallMatch()+"%";
+
+    document.getElementById("statSpecialty").textContent =
+        profile.specialty === "Computer Science" ? "CS" : profile.specialty;
+
+    document.getElementById("statSAT").textContent =
+        profile.sat;
+
+    document.getElementById("statIELTS").textContent =
+        Number(profile.ielts).toFixed(1);
+}
+
+
+/* ---------- UNIVERSITIES ---------- */
+
+function renderUniversities(){
+
+    const search =
+        document.getElementById("uniSearch")?.value
+        ?.toLowerCase()
+        .trim() || "";
+
+    const country =
+        document.getElementById("countryFilter")?.value || "";
+
+    const field =
+        document.getElementById("fieldFilter")?.value || "";
+
+    const sort =
+        document.getElementById("sortFilter")?.value || "match";
+
+    let list = universities.filter(u=>{
+
+        const matchesSearch =
+            !search ||
+            u.name.toLowerCase().includes(search) ||
+            u.city.toLowerCase().includes(search) ||
+            u.country.toLowerCase().includes(search) ||
+            u.field.toLowerCase().includes(search);
+
+        const matchesCountry =
+            !country || u.country === country;
+
+        const matchesField =
+            !field || u.field === field;
+
+        return matchesSearch && matchesCountry && matchesField;
+    });
+
+    if(sort==="match"){
+        list.sort((a,b)=>calculateMatch(b)-calculateMatch(a));
+    }
+
+    if(sort==="name"){
+        list.sort((a,b)=>a.name.localeCompare(b.name));
+    }
+
+    if(sort==="sat"){
+        list.sort((a,b)=>a.sat-b.sat);
+    }
+
+    const grid = document.getElementById("universitiesGrid");
+
+    if(!list.length){
+
+        grid.innerHTML = `
+            <div class="card empty" style="grid-column:1/-1">
+                <h3>No universities found</h3>
+                <p>Try changing your search or filters.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+    grid.innerHTML = list.map(createCard).join("");
+}
+
+
+/* ---------- COUNTRY FILTER ---------- */
+
+function populateCountries(){
+
+    const select = document.getElementById("countryFilter");
+
+    const countries = [...new Set(
+        universities.map(u=>u.country)
+    )].sort();
+
+    countries.forEach(country=>{
+
+        const option = document.createElement("option");
+
+        option.value = country;
+        option.textContent = country;
+
+        select.appendChild(option);
+    });
+}
+
+
+/* ---------- SAVE ---------- */
+
+function toggleSave(id){
+
+    id = Number(id);
+
+    if(saved.includes(id)){
+        saved = saved.filter(x=>x!==id);
+    }else{
+        saved.push(id);
+    }
+
+    localStorage.setItem(
+        "unipathSaved",
+        JSON.stringify(saved)
+    );
+
+    renderOverview();
     renderUniversities();
+    renderSaved();
+    renderCompare();
 
+    if(currentUniversity){
+        updateModalButtons();
+    }
 }
 
-/* =========================
-   AI ASSISTANT
-========================= */
+function renderSaved(){
 
-function addMessage(text,type){
+    const grid = document.getElementById("savedGrid");
 
-    const box=
-        document.getElementById("chatMessages");
+    const list = saved
+        .map(id=>getUniversity(id))
+        .filter(Boolean);
 
-    const message=
-        document.createElement("div");
+    if(!list.length){
 
-    message.className=
-        "message "+type;
+        grid.innerHTML = `
+            <div class="card empty" style="grid-column:1/-1">
+                <h3>No saved universities yet</h3>
+                <p>Open Universities and save the ones you like.</p>
+            </div>
+        `;
 
-    message.innerHTML=
+        return;
+    }
+
+    grid.innerHTML = list.map(createCard).join("");
+}
+
+
+/* ---------- COMPARE ---------- */
+
+function renderCompare(){
+
+    const container =
+        document.getElementById("compareContainer");
+
+    const list = saved
+        .map(id=>getUniversity(id))
+        .filter(Boolean)
+        .slice(0,5);
+
+    if(!list.length){
+
+        container.innerHTML = `
+            <div class="empty">
+                <h3>Nothing to compare</h3>
+                <p>Save universities first.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+    const rows = [
+        ["University",u=>u.name],
+        ["Country",u=>u.country],
+        ["Field",u=>u.field],
+        ["Your Match",u=>calculateMatch(u)+"%"],
+        ["SAT",u=>u.sat+"+"],
+        ["IELTS",u=>u.ielts+"+"],
+        ["GPA",u=>u.gpa+"+"],
+        ["Tuition",u=>u.tuition],
+        ["Scholarship",u=>u.scholarship],
+        ["Financial Aid",u=>u.aid],
+        ["Deadline",u=>u.deadline],
+        ["Application",u=>u.application]
+    ];
+
+    let html = "<table><thead><tr><th>Metric</th>";
+
+    list.forEach(u=>{
+        html += `<th>${escapeHTML(u.name)}</th>`;
+    });
+
+    html += "</tr></thead><tbody>";
+
+    rows.forEach(row=>{
+
+        html += `<tr><td><strong>${row[0]}</strong></td>`;
+
+        list.forEach(u=>{
+            html += `<td>${escapeHTML(row[1](u))}</td>`;
+        });
+
+        html += "</tr>";
+    });
+
+    html += "</tbody></table>";
+
+    container.innerHTML = html;
+}
+
+
+/* ---------- MODAL ---------- */
+
+function openModal(id){
+
+    const u = getUniversity(id);
+
+    if(!u) return;
+
+    currentUniversity = u;
+
+    document.getElementById("modalName").textContent = u.name;
+
+    document.getElementById("modalLocation").textContent =
+        `${u.city}, ${u.country} • ${u.field}`;
+
+    document.getElementById("modalMatch").textContent =
+        calculateMatch(u)+"%";
+
+    document.getElementById("modalSAT").textContent =
+        u.sat+"+";
+
+    document.getElementById("modalIELTS").textContent =
+        u.ielts+"+";
+
+    document.getElementById("modalGPA").textContent =
+        u.gpa+"+";
+
+    document.getElementById("modalTuition").textContent =
+        u.tuition;
+
+    document.getElementById("modalScholarship").textContent =
+        u.scholarship;
+
+    document.getElementById("modalDeadline").textContent =
+        u.deadline;
+
+    document.getElementById("modalApplication").textContent =
+        u.application;
+
+    document.getElementById("modalEssays").textContent =
+        u.essays;
+
+    document.getElementById("modalAid").textContent =
+        u.aid;
+
+    const image = universityImages[u.id];
+
+    const modalImage =
+        document.getElementById("modalImage");
+
+    if(image){
+        modalImage.src = image;
+        modalImage.style.display = "block";
+    }else{
+        modalImage.style.display = "none";
+    }
+
+    updateProfileChecks();
+
+    updateModalButtons();
+
+    document.getElementById("uniModal")
+        .classList.add("open");
+}
+
+function closeModal(){
+
+    document.getElementById("uniModal")
+        .classList.remove("open");
+
+    currentUniversity = null;
+}
+
+function updateModalButtons(){
+
+    if(!currentUniversity) return;
+
+    const button =
+        document.getElementById("modalSave");
+
+    button.textContent =
+        isSaved(currentUniversity.id)
+        ? "♥ Saved"
+        : "♡ Save";
+}
+
+function saveFromModal(){
+
+    if(currentUniversity){
+        toggleSave(currentUniversity.id);
+    }
+}
+
+function compareFromModal(){
+
+    if(!currentUniversity) return;
+
+    if(!isSaved(currentUniversity.id)){
+        toggleSave(currentUniversity.id);
+    }
+
+    alert(
+        currentUniversity.name +
+        " was added to your saved comparison list."
+    );
+}
+
+function openOfficialWebsite(){
+
+    if(currentUniversity?.website){
+        window.open(
+            currentUniversity.website,
+            "_blank",
+            "noopener,noreferrer"
+        );
+    }
+}
+
+
+/* ---------- PROFILE CHECKS ---------- */
+
+function updateProfileChecks(){
+
+    if(!currentUniversity) return;
+
+    const u = currentUniversity;
+
+    const satOk =
+        Number(profile.sat) >= u.sat;
+
+    const ieltsOk =
+        Number(profile.ielts) >= u.ielts;
+
+    const gpaOk =
+        Number(profile.gpa) >= u.gpa;
+
+    const portfolioOk =
+        profile.portfolio === "Strong" ||
+        profile.portfolio === "Excellent";
+
+    setCheck("checkSAT",satOk);
+    setCheck("checkIELTS",ieltsOk);
+    setCheck("checkGPA",gpaOk);
+    setCheck("checkPortfolio",portfolioOk);
+}
+
+function setCheck(id,ok){
+
+    const el = document.getElementById(id);
+
+    el.textContent = ok ? "✓ On target" : "Needs work";
+
+    el.className = ok ? "ok" : "no";
+}
+
+
+/* ---------- PROFILE ---------- */
+
+function loadProfileForm(){
+
+    document.getElementById("profileName").value =
+        profile.name;
+
+    document.getElementById("profileGrade").value =
+        profile.grade;
+
+    document.getElementById("profileSpecialty").value =
+        profile.specialty;
+
+    document.getElementById("profileSAT").value =
+        profile.sat;
+
+    document.getElementById("profileIELTS").value =
+        profile.ielts;
+
+    document.getElementById("profileGPA").value =
+        profile.gpa;
+
+    document.getElementById("profilePortfolio").value =
+        profile.portfolio;
+
+    document.getElementById("profileDestination").value =
+        profile.destination;
+}
+
+function saveProfile(){
+
+    profile = {
+        name:document.getElementById("profileName").value || "Student",
+        grade:Number(document.getElementById("profileGrade").value),
+        specialty:document.getElementById("profileSpecialty").value,
+        sat:Number(document.getElementById("profileSAT").value),
+        ielts:Number(document.getElementById("profileIELTS").value),
+        gpa:Number(document.getElementById("profileGPA").value),
+        portfolio:document.getElementById("profilePortfolio").value,
+        destination:document.getElementById("profileDestination").value
+    };
+
+    localStorage.setItem(
+        "unipathProfile",
+        JSON.stringify(profile)
+    );
+
+    updateProfileUI();
+
+    renderOverview();
+    renderUniversities();
+    renderSaved();
+    renderCompare();
+    renderProfile();
+
+    if(currentUniversity){
+        updateProfileChecks();
+
+        document.getElementById("modalMatch").textContent =
+            calculateMatch(currentUniversity)+"%";
+    }
+
+    alert("Profile saved successfully.");
+}
+
+function renderProfile(){
+
+    const s = calculateStrength();
+
+    setProgress("academic",s.academic);
+    setProgress("english",s.english);
+    setProgress("testing",s.testing);
+    setProgress("portfolio",s.portfolio);
+
+    document.getElementById("profileSummary").innerHTML = `
+        <b>${escapeHTML(profile.name)}</b> is in Grade ${profile.grade},
+        targeting <b>${escapeHTML(profile.specialty)}</b>.
+        Current target profile:
+        SAT <b>${profile.sat}</b>,
+        IELTS <b>${Number(profile.ielts).toFixed(1)}</b>,
+        GPA <b>${profile.gpa}</b>.
+    `;
+}
+
+function setProgress(type,value){
+
+    document.getElementById(type+"Score").textContent =
+        value+"%";
+
+    document.getElementById(type+"Bar").style.width =
+        value+"%";
+}
+
+function updateProfileUI(){
+
+    const initial =
+        (profile.name || "N").charAt(0).toUpperCase();
+
+    document.getElementById("miniAvatar").textContent =
+        initial;
+
+    document.getElementById("topAvatar").textContent =
+        initial;
+
+    document.getElementById("miniName").textContent =
+        profile.name;
+
+    document.getElementById("aiProfileName").textContent =
+        profile.name;
+
+    document.getElementById("aiGrade").textContent =
+        profile.grade;
+
+    document.getElementById("aiSpecialty").textContent =
+        profile.specialty;
+
+    document.getElementById("aiSAT").textContent =
+        profile.sat;
+
+    document.getElementById("aiIELTS").textContent =
+        Number(profile.ielts).toFixed(1);
+}
+
+
+/* ---------- OVERALL MATCH ---------- */
+
+function calculateOverallMatch(){
+
+    const top = universities
+        .map(u=>calculateMatch(u))
+        .sort((a,b)=>b-a)
+        .slice(0,10);
+
+    return Math.round(
+        top.reduce((a,b)=>a+b,0) / top.length
+    );
+}
+
+
+/* ---------- SEARCH ---------- */
+
+function globalSearch(value){
+
+    if(!value.trim()) return;
+
+    const page =
+        document.getElementById("page-universities");
+
+    if(!page.classList.contains("active")){
+        showPageById("universities");
+    }
+
+    const input =
+        document.getElementById("uniSearch");
+
+    if(input){
+        input.value = value;
+        renderUniversities();
+    }
+}
+
+
+/* ---------- TRACKER ---------- */
+
+const tracker = JSON.parse(
+    localStorage.getItem("unipathTracker") ||
+    JSON.stringify({
+        research:[
+            "Build university shortlist"
+        ],
+        preparing:[
+            "SAT preparation",
+            "IELTS preparation"
+        ],
+        ready:[
+            "Create portfolio"
+        ]
+    })
+);
+
+function saveTracker(){
+    localStorage.setItem(
+        "unipathTracker",
+        JSON.stringify(tracker)
+    );
+}
+
+function renderTracker(){
+
+    renderTrackerColumn(
+        "research",
+        "researchCards",
+        "researchCount"
+    );
+
+    renderTrackerColumn(
+        "preparing",
+        "prepCards",
+        "prepCount"
+    );
+
+    renderTrackerColumn(
+        "ready",
+        "readyCards",
+        "readyCount"
+    );
+}
+
+function renderTrackerColumn(type,containerId,countId){
+
+    const container =
+        document.getElementById(containerId);
+
+    const items = tracker[type] || [];
+
+    document.getElementById(countId).textContent =
+        items.length;
+
+    container.innerHTML = items.map((item,index)=>`
+
+        <div class="tracker-card">
+
+            <h4>${escapeHTML(item)}</h4>
+
+            <p>UniPath task</p>
+
+            <button
+                class="btn small"
+                onclick="moveTracker('${type}',${index})"
+            >
+                ${type==="ready" ? "✓ Done" : "Move →"}
+            </button>
+
+        </div>
+
+    `).join("");
+}
+
+function moveTracker(type,index){
+
+    const item = tracker[type][index];
+
+    if(type==="research"){
+        tracker.research.splice(index,1);
+        tracker.preparing.push(item);
+    }
+    else if(type==="preparing"){
+        tracker.preparing.splice(index,1);
+        tracker.ready.push(item);
+    }
+    else{
+        tracker.ready.splice(index,1);
+        alert("Task completed: "+item);
+    }
+
+    saveTracker();
+    renderTracker();
+}
+
+
+/* ---------- AI ASSISTANT ---------- */
+
+function askAI(text){
+
+    document.getElementById("aiInput").value =
         text;
 
-    box.appendChild(message);
-
-    box.scrollTop=box.scrollHeight;
+    sendAI();
 }
 
 function sendAI(){
 
-    const input=
+    const input =
         document.getElementById("aiInput");
 
-    const text=input.value.trim();
+    const text =
+        input.value.trim();
 
     if(!text) return;
 
-    addMessage(
-        escapeHTML(text),
-        "user"
-    );
+    addAIMessage(text,"user");
 
-    input.value="";
+    input.value = "";
 
     setTimeout(()=>{
-
-        addMessage(
-            generateAIResponse(text),
-            "ai"
-        );
-
+        const answer = generateAIResponse(text);
+        addAIMessage(answer,"ai");
     },350);
 }
 
-function askAI(text){
+function addAIMessage(text,type){
 
-    addMessage(
-        escapeHTML(text),
-        "user"
-    );
+    const box =
+        document.getElementById("aiMessages");
 
-    setTimeout(()=>{
+    const message =
+        document.createElement("div");
 
-        addMessage(
-            generateAIResponse(text),
-            "ai"
-        );
+    message.className =
+        "message "+type;
 
-    },300);
+    message.innerHTML =
+        text.replace(/\n/g,"<br>");
 
+    box.appendChild(message);
+
+    box.scrollTop = box.scrollHeight;
 }
 
-function generateAIResponse(text){
+function generateAIResponse(question){
 
-    const q=text.toLowerCase();
+    const q = question.toLowerCase();
 
     if(
-        q.includes("profile") ||
-        q.includes("analyze")
+        q.includes("analyze") ||
+        q.includes("profile")
     ){
 
-        const strength=
-            calculateProfileStrength();
+        const strength = calculateStrength();
 
         return `
-        <strong>Your current profile</strong><br><br>
-
-        Grade: ${profile.grade}<br>
-        Specialty: ${profile.specialty}<br>
-        Target SAT: ${profile.sat}<br>
-        Target IELTS: ${profile.ielts}<br>
-        GPA: ${profile.gpa}<br><br>
-
-        Current profile strength:
-        <strong>${strength}%</strong>
+        Based on your current profile:
 
         <br><br>
-
-        For Grade ${profile.grade},
-        I would focus on three things:
+        <b>Specialty:</b> ${escapeHTML(profile.specialty)}
         <br>
-        • English improvement<br>
-        • SAT foundation<br>
-        • Building 1–2 serious CS projects
-        `;
+        <b>Grade:</b> ${profile.grade}
+        <br>
+        <b>SAT:</b> ${profile.sat}
+        <br>
+        <b>IELTS:</b> ${Number(profile.ielts).toFixed(1)}
+        <br>
+        <b>GPA:</b> ${profile.gpa}
+        <br><br>
 
+        <b>Profile indicators:</b>
+        <br>
+        Academics: ${strength.academic}%
+        <br>
+        English: ${strength.english}%
+        <br>
+        Testing: ${strength.testing}%
+        <br>
+        Portfolio: ${strength.portfolio}%
+        <br><br>
+
+        Your next step should be to keep improving your weakest
+        profile area while continuing to build meaningful projects.
+        `;
     }
 
     if(
@@ -3076,16 +3904,33 @@ function generateAIResponse(text){
         q.includes("weak")
     ){
 
+        const s = calculateStrength();
+
+        const values = [
+            ["Academics",s.academic],
+            ["English",s.english],
+            ["Testing",s.testing],
+            ["Portfolio",s.portfolio]
+        ].sort((a,b)=>a[1]-b[1]);
+
         return `
-        <strong>What to improve next</strong><br><br>
+        Your current lowest profile indicator is
+        <b>${values[0][0]}</b> at ${values[0][1]}%.
 
-        1. SAT — keep building toward your target.<br>
-        2. IELTS — especially vocabulary, reading and writing.<br>
-        3. Portfolio — make projects that solve real problems.<br>
-        4. Academics — keep your school grades strong.<br>
-        5. Activities — competitions, olympiads, research or leadership.
+        <br><br>
+
+        A practical plan:
+        <br>
+        • Keep your school grades strong
+        <br>
+        • Continue SAT/IELTS preparation
+        <br>
+        • Build 2–4 meaningful CS projects
+        <br>
+        • Document your achievements
+        <br>
+        • Develop one project deeply instead of collecting many unfinished projects.
         `;
-
     }
 
     if(
@@ -3093,27 +3938,27 @@ function generateAIResponse(text){
         q.includes("universit")
     ){
 
-        const best=
-            [...universities]
-            .sort(
-                (a,b)=>
-                calculateMatch(b)-calculateMatch(a)
-            )
+        const list = universities
+            .map(u=>({
+                ...u,
+                match:calculateMatch(u)
+            }))
+            .sort((a,b)=>b.match-a.match)
             .slice(0,5);
 
         return `
-        <strong>Universities matching your profile</strong><br><br>
+        Based on your current profile, here are five
+        universities with high calculated profile matches:
 
-        ${best.map(
-            u=>
-            `• ${escapeHTML(u.name)}
-            — ${calculateMatch(u)}% match`
+        <br><br>
+
+        ${list.map((u,i)=>
+            `${i+1}. <b>${escapeHTML(u.name)}</b> — ${u.match}%`
         ).join("<br>")}
 
         <br><br>
-        Open the Universities section to explore the full catalog.
+        These are prototype calculations, not admission probabilities.
         `;
-
     }
 
     if(
@@ -3121,27 +3966,20 @@ function generateAIResponse(text){
     ){
 
         return `
-        <strong>SAT strategy</strong><br><br>
-
-        Since you're currently in Grade ${profile.grade},
-        don't worry about reaching your final score immediately.
+        For your current profile, your SAT target is
+        <b>${profile.sat}</b>.
 
         <br><br>
 
-        Start with:
-        <br>
-        • Math fundamentals<br>
-        • Grammar and reading<br>
-        • Timed practice<br>
-        • Error log<br>
-        • Regular full-length tests
+        A good strategy is to identify your weakest section,
+        practice consistently, review mistakes and periodically
+        take full-length timed tests.
 
         <br><br>
 
-        Your current target is
-        <strong>${profile.sat}</strong>.
+        UniPath's current data is reference/demo data, so
+        official university policies should always be checked separately.
         `;
-
     }
 
     if(
@@ -3149,62 +3987,172 @@ function generateAIResponse(text){
     ){
 
         return `
-        <strong>Your UniPath roadmap</strong><br><br>
+        Your roadmap can look like this:
 
-        <strong>Grade 9:</strong>
-        English + programming + first projects.<br><br>
+        <br><br>
 
-        <strong>Grade 10:</strong>
-        SAT/IELTS + competitions + stronger portfolio.<br><br>
+        <b>Grade 9:</b> English + math + programming foundation.
+        <br>
+        <b>Grade 10:</b> SAT/IELTS + serious projects + competitions.
+        <br>
+        <b>Grade 11:</b> final tests + essays + recommendations +
+        university applications.
+        <br><br>
 
-        <strong>Grade 11:</strong>
-        University list + essays + recommendations +
-        applications + financial aid.
+        The key is consistency rather than trying to complete
+        everything at once.
         `;
-
     }
 
     if(
-        q.includes("safety") ||
-        q.includes("target") ||
-        q.includes("dream")
+        q.includes("application")
     ){
 
         return `
-        <strong>University categories</strong><br><br>
+        A strong application usually combines several components:
 
-        <strong>Dream</strong> — admission would be highly competitive
-        relative to your current profile.<br><br>
+        <br><br>
+        • Academic performance
+        <br>
+        • English proficiency
+        <br>
+        • Standardized testing where applicable
+        <br>
+        • Extracurricular activities
+        <br>
+        • Meaningful projects
+        <br>
+        • Essays
+        <br>
+        • Recommendations
+        <br>
+        • Evidence of initiative
 
-        <strong>Target</strong> — requirements are closer to your
-        current academic profile.<br><br>
-
-        <strong>Safety</strong> — your profile is comfortably above
-        the typical requirements, while you still need to verify
-        the university's actual admission policy.
+        <br><br>
+        The exact requirements depend on the university and program.
         `;
-
     }
 
     return `
-    I can help with:
-    <br><br>
-    • analyzing your profile<br>
-    • finding universities<br>
-    • SAT / IELTS planning<br>
-    • CS portfolio ideas<br>
-    • application roadmap<br>
-    • comparing universities<br><br>
+        I understand the question.
 
-    Try asking:
-    <strong>"Analyze my profile"</strong>
+        <br><br>
+
+        In this prototype I can help you with:
+        <br>
+        • university discovery
+        <br>
+        • profile analysis
+        <br>
+        • SAT / IELTS planning
+        <br>
+        • application roadmap
+        <br>
+        • university comparison
+        <br>
+        • portfolio planning
+
+        <br><br>
+
+        Try asking:
+        <b>"Analyze my profile"</b>
+        or
+        <b>"Find universities for me"</b>.
     `;
-
 }
 
-/* =========================
-   INIT
-========================= */
+
+/* ---------- WIKIPEDIA IMAGES ---------- */
+
+/*
+   We intentionally use Wikipedia/Wikimedia images rather than
+   random stock/AI images.
+
+   If a page has a thumbnail, we use it.
+   If not, the card falls back to university initials.
+*/
+
+async function loadUniversityImages(){
+
+    const queue = [...universities];
+
+    const workers = Array.from(
+        {length:5},
+        async ()=>{
+            while(queue.length){
+
+                const u = queue.shift();
+
+                try{
+
+                    const query =
+                        encodeURIComponent(
+                            `${u.name} university campus`
+                        );
+
+                    const url =
+                        `https://en.wikipedia.org/w/api.php`+
+                        `?action=query`+
+                        `&generator=search`+
+                        `&gsrsearch=${query}`+
+                        `&gsrnamespace=0`+
+                        `&gsrlimit=1`+
+                        `&prop=pageimages`+
+                        `&piprop=thumbnail`+
+                        `&pithumbsize=900`+
+                        `&format=json`+
+                        `&origin=*`;
+
+                    const response =
+                        await fetch(url);
+
+                    if(!response.ok) continue;
+
+                    const data =
+                        await response.json();
+
+                    const pages =
+                        data.query?.pages;
+
+                    if(pages){
+
+                        const page =
+                            Object.values(pages)[0];
+
+                        if(page?.thumbnail?.source){
+                            universityImages[u.id] =
+                                page.thumbnail.source;
+                        }
+                    }
+
+                }catch(error){
+                    console.log(
+                        "Image unavailable:",
+                        u.name
+                    );
+                }
+            }
+        }
+    );
+
+    await Promise.all(workers);
+
+    renderOverview();
+    renderUniversities();
+}
+
+
+/* ---------- SIDEBAR ---------- */
+
+function toggleSidebar(){
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+}
+
+
+/* ---------- INIT ---------- */
 
 populateCountries();
 
@@ -3220,21 +4168,33 @@ renderSaved();
 
 renderCompare();
 
+renderTracker();
+
+renderProfile();
+
 loadUniversityImages();
 
-/* close modal when clicking outside */
 
-document.getElementById("modal")
+/* ---------- CLOSE MODAL ---------- */
+
+document.getElementById("uniModal")
     .addEventListener("click",function(e){
 
-        if(e.target===this){
+        if(e.target === this){
             closeModal();
         }
 
     });
 
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="Escape"){
+        closeModal();
+    }
+
+});
+
 </script>
 
 </body>
 </html>
-```
